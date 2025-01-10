@@ -1,0 +1,49 @@
+ul.profile-dropdown.hidden {
+  display: none;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 90%;
+  list-style-type: none;
+}
+
+#user-nav {
+  width: 30px;
+  height: 30px;
+  font-size: larger;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+ 
+}
+
+ul.profile-dropdown.show {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+#home-button {
+  color: red;
+  font-size: larger;
+}
+
+#logout{
+  display: flex;
+  width:80%;
+  align-self: center;
+
+}
+
+li{
+display: flex;
+align-items: center;
+}
