@@ -28,9 +28,9 @@ router.use('/spot-images', spotImagesRouter);
 router.use('/review-images', reviewImagesRouter)
 
 
-//! Keep this route to test frontend setup in Mod 5
-router.post('/test', (req, res) => {
-  res.json({ requestBody: req.body });
-});
+// //! Keep this route to test frontend setup in Mod 5
+// router.post('/test', (req, res) => {
+//   res.json({ requestBody: req.body });
+// });
 
 module.exports = router;
