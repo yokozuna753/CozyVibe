@@ -11,6 +11,12 @@ ul {
   list-style-type: none;
 }
 
+img{
+  width: 9%;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
 #user-nav {
   width: 30px;
   height: 30px;
@@ -31,16 +37,23 @@ ul.profile-dropdown.show {
   border: 1px solid black;
 }
 
-#home-button {
-  color: red;
-  font-size: larger;
-}
+
 
 #logout{
   display: flex;
   width:80%;
   align-self: center;
 
+}
+
+#profile-button{
+  font-size: x-large;
+  background-color: #c0ae8e;
+  border: none;
+}
+
+#profile-button:hover{
+  cursor: pointer;
 }
 
 li{
