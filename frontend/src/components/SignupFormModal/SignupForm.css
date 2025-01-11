@@ -22,8 +22,11 @@
   }
   
   h1{
+    display: flex;
+    align-self: center;
       margin-top: 0%;
       font-size: xx-large;
+
   }
   
   #root {
