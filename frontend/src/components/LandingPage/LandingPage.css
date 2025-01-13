@@ -1,0 +1,11 @@
+#spot-list{
+    display: flex;
+
+    flex-wrap: wrap;
+
+    height: 200px; /*check if i need this later on */
+    width: 90%;
+    /* border: 10px solid black; */
+    height: fit-content;
+}
+

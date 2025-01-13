@@ -16,16 +16,50 @@ export const fetchSpots = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { spots: {} };
+const CREATE_SPOT = "spots/createSpot";
+
+function setSpot(spot) {
+  return {
+    type: CREATE_SPOT,
+    payload: spot,
+  };
+}
+
+export const createSpot = (spot) => async (dispatch) => {
+
+  const response = await csrfFetch("/api/spots", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(
+      spot,
+    ),
+  });
+  
+  const data = await response.json();
+  console.log("THIS IS THE DATA", data);
+
+  dispatch(setSpot(data))
+
+  // // dispatch(setSpot(data))
+  return response;
+};
+
+const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SPOTS:
-        const newObj = {};
-        action.payload.forEach(element => {
-            newObj[element.id] = element;
-        });
-      return { ...state,  ...newObj };
+      const newObj = {};
+      action.payload.forEach((element) => {
+        newObj[element.id] = element;
+      });
+      return { ...state, ...newObj };
+    case CREATE_SPOT:
+      const {id} = action.payload
+      console.log('PAYLOAD ===> ',action.payload);
+      return { ...state, [id]:action.payload };
     default:
       return state;
   }

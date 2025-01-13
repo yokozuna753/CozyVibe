@@ -1,5 +1,5 @@
-const express = require('express');
-const { SpotImage, Spot } = require('../../db/models');
+const express = require("express");
+const { SpotImage, Spot } = require("../../db/models");
 const router = express.Router();
 
 // Authentication middleware
@@ -7,14 +7,14 @@ const requireAuth = function (req, res, next) {
   // console.log("::::::::::::: Authentication middleware hit");
   if (!req.user) {
     // console.log("::::::::::::: No user authenticated");
-    return res.status(401).json({ message: 'Authentication required' });
+    return res.status(401).json({ message: "Authentication required" });
   }
   // console.log("::::::::::::: User authenticated, proceeding...");
   return next(); // Proceed if authenticated
 };
 
 // DELETE /api/spot-images/:imageId
-router.delete('/:imageId', requireAuth, async (req, res) => {
+router.delete("/:imageId", requireAuth, async (req, res) => {
   const { imageId } = req.params; // Get the imageId from the request params
   const userId = req.user.id; // Get the authenticated user's ID from req.user
 
@@ -56,7 +56,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     if (spotOwnerId !== authenticatedUserId) {
       // console.log('::::::::::::: 403 Forbidden, User is NOT the owner of this Spot');
       return res.status(403).json({
-        message: 'You do not have permission to delete this image',
+        message: "You do not have permission to delete this image",
       });
     }
 
@@ -68,18 +68,16 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     // console.log('::::::::::::: 200 OK, Image Deleted Successfully');
     // Step 6: Return success response after deletion
     return res.status(200).json({
-      message: 'Successfully deleted',
+      message: "Successfully deleted",
     });
-
   } catch (error) {
     // Catch any unexpected errors and send a generic 500 error response
     console.error("Error in deleting spot image:", error);
     return res.status(500).json({
-      message: 'Internal Server Error',
+      message: "Internal Server Error",
       errors: error.message || error,
     });
   }
 });
-
 
 module.exports = router;

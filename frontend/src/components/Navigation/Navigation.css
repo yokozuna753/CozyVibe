@@ -2,18 +2,22 @@ ul.profile-dropdown.hidden {
   display: none;
 }
 
-ul {
+#nav-ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: white;
   width: 90%;
   list-style-type: none;
+  border-bottom: 1px solid gray;
 }
 
-img{
+#logo {
   width: 9%;
-  border: 1px solid transparent;
+
   border-radius: 50%;
 }
 
@@ -23,12 +27,20 @@ img{
   font-size: larger;
 }
 
+#profile-info{
+  border-bottom: 1px solid black;
+}
+
+#user-info{
+  margin: 20px 0px;
+  border-bottom: 1px solid black;
+}
+
 .nav {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: fit-content;
- 
 }
 
 ul.profile-dropdown.show {
@@ -37,26 +49,39 @@ ul.profile-dropdown.show {
   border: 1px solid black;
 }
 
-
-
-#logout{
+#logout {
   display: flex;
-  width:80%;
+  width: 80%;
   align-self: center;
-
 }
 
-#profile-button{
+#profile-button {
   font-size: x-large;
-  background-color: #c0ae8e;
+  background-color: transparent;
   border: none;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
-#profile-button:hover{
+#profile-button:hover {
   cursor: pointer;
 }
 
-li{
-display: flex;
-align-items: center;
+li {
+  display: flex;
+  align-items: center;
 }
+
+#create-spot {
+  width: 200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
+}
+
+ul{
+  padding: none;
+}
+
