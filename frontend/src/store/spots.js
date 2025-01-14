@@ -26,24 +26,35 @@ function setSpot(spot) {
 }
 
 export const createSpot = (spot) => async (dispatch) => {
-
   const response = await csrfFetch("/api/spots", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(
-      spot,
-    ),
+    body: JSON.stringify(spot),
   });
-  
+
   const data = await response.json();
   console.log("THIS IS THE DATA", data);
 
-  dispatch(setSpot(data))
-
-  // // dispatch(setSpot(data))
+  dispatch(setSpot(data));
   return response;
+};
+
+const GET_CURRENT_SPOT = "spots/getCurrentSpot";
+
+function getCurrentSpot(spot) {
+  return {
+    type: GET_CURRENT_SPOT,
+    payload: spot
+  };
+}
+
+export const currentSpot = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${id}`);
+  const data = await response.json();
+  dispatch(getCurrentSpot(data))
+  return response
 };
 
 const initialState = {};
@@ -57,9 +68,11 @@ const spotsReducer = (state = initialState, action) => {
       });
       return { ...state, ...newObj };
     case CREATE_SPOT:
-      const {id} = action.payload
-      console.log('PAYLOAD ===> ',action.payload);
-      return { ...state, [id]:action.payload };
+      const { id } = action.payload;
+      console.log("PAYLOAD ===> ", action.payload);
+      return { ...state, [id]: action.payload };
+    case GET_CURRENT_SPOT:
+    return {...state, currentSpot: action.payload}
     default:
       return state;
   }

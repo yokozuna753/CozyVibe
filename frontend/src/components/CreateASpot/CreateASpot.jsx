@@ -2,6 +2,8 @@ import { useState } from "react";
 import { createSpot } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { FunctionContext } from "../../context/FormContext";
 
 // i set a handle submit function that will check for errors
 
@@ -19,8 +21,13 @@ function CreateASpot() {
   const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
 
-   const spots = useSelector((state) => state.spots);
-   console.log('FROM CREATE SPOT ===>', spots);
+
+
+  const { formType, changeContext } = useContext(FunctionContext);
+
+  console.log('FORM TYPE ===>', formType,);
+
+  const spots = useSelector((state) => state.spots);
 
   const dispatch = useDispatch();
 
@@ -43,9 +50,9 @@ function CreateASpot() {
       validationErrors.previewImage = "Preview image is required";
     if (
       image.length &&
-      (!image.endsWith(".jpg") &&
-        !image.endsWith(".jpeg") &&
-        !image.endsWith(".png"))
+      !image.endsWith(".jpg") &&
+      !image.endsWith(".jpeg") &&
+      !image.endsWith(".png")
     )
       validationErrors.image = "Image URL must end in .png, .jpg, or .jpeg";
 
@@ -64,10 +71,11 @@ function CreateASpot() {
         lat: 90,
         lng: 90,
       };
-
       dispatch(createSpot(newSpot));
-        navigate('/')
-        reset();
+      const values = Object.keys(spots);
+      const lastId = Number(values[values.length - 1]) + 1;
+      navigate(`/spots/${lastId}`);
+      reset();
     }
   }
 
@@ -86,7 +94,7 @@ function CreateASpot() {
 
   return (
     <>
-      <h1>Create A new Spot</h1>
+      <h1>{formType} </h1>
       <form onSubmit={handleSubmit}>
         <div>
           <h3>Where&apos;s your place located?</h3>

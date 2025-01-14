@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { fetchSpots } from "../../store/spots";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import "./SpotList.css";
 import { FaStar } from "react-icons/fa";
 
@@ -26,31 +27,34 @@ function SpotList({ spots }) {
   useSelector((state) => state.spots);
 
   return (
-    <div id="ul">
-      {spots.map(({ id,name,  city, state, avgRating, price, previewImage }) => {
-
-
-        return (
-          <div id="list" key={id}>
-            <div className="tooltip-container">
-              <img className="spot-image" src={previewImage} />
-              <span className="tooltip-text">{name}</span>
-            </div>
-            <div id="spot-list-description">
-            <div >
-              {" "}
-              <li>
-                {city}, {state}{" "}
-              </li>
-              <li id="price">{`$${price} night`} </li>
-            </div>
-            <div id="star-rating">
-              <li> <FaStar/> {avgRating ? avgRating : "New"} </li>
+    <div key={1} id="ul">
+      {spots.map(
+        ({ id, name, city, state, avgRating, price, previewImage }) => {
+          return (
+            <div className="list" key={id}>
+              <div className="tooltip-container">
+                <NavLink to={`/spots/${id}`}><img className="spot-image" src={previewImage} /></NavLink>
+                <span className="tooltip-text">{name}</span>
               </div>
+              <div className="spot-list-description">
+                <div>
+                  {" "}
+                  <li>
+                    {city}, {state}{" "}
+                  </li>
+                  <li id="price">{`$${price} night`} </li>
+                </div>
+                <div className="star-rating">
+                  <li>
+                    {" "}
+                    <FaStar /> {avgRating ? avgRating : "New"}{" "}
+                  </li>
+                </div>
               </div>
-          </div>
-        );
-      })}
+            </div>
+          );
+        }
+      )}
     </div>
   );
 }

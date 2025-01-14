@@ -44,7 +44,7 @@ label {
   display: flex;
   flex-direction: column;
   padding: 4%;
-
+  overflow-y: hidden;
   align-self: auto;
 }
 

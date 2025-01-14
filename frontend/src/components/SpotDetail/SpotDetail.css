@@ -1,0 +1,47 @@
+#details-container{
+    display: flex;
+    flex-direction: column;
+}
+
+#container{
+display: flex;
+justify-content: space-between;
+}
+
+#main-image{
+    width: 500px;
+    height: 400px;
+}
+
+.detail-images{
+    width: 200px;
+    height: 200px;
+}
+
+#image-container{
+    display: flex;
+}
+
+#review-box{
+    display: flex;
+    align-self: center;
+
+}
+
+#reviews-container{
+    display: flex;
+    align-items: center;
+    font-size: medium;
+}
+
+#reviews-h2{
+    gap: 20px;
+
+}
+
+#star2{
+    font-size: large;
+}
+
+
+
