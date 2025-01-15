@@ -1,18 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { thunk } from "redux-thunk";
-import sessionReducer from './session';
+import sessionReducer from "./session";
 import spotsReducer from "./spots";
 import reviewsReducer from "./reviews";
+import currentSpotReducer from "./currentSpot";
 
-
-// import createStore, combineReducers, applyMiddleware, 
+// import createStore, combineReducers, applyMiddleware,
 // and compose from the redux package. Import thunk from redux-thunk.
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotsReducer,
   reviews: reviewsReducer,
-
+  currentSpot: currentSpotReducer,
 });
 
 /*
@@ -41,14 +41,13 @@ if (import.meta.env.MODE === "production") {
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-// create a configureStore function that takes in an optional preloadedState. 
+// create a configureStore function that takes in an optional preloadedState.
 // Return createStore invoked with the rootReducer, the preloadedState, and the enhancer.
 
 const configureStore = (preLoadedState) =>
   createStore(rootReducer, preLoadedState, enhancer);
 
-//  export the configureStore function at the bottom of the file as the default export. 
+//  export the configureStore function at the bottom of the file as the default export.
 // This function will be used by main.jsx to attach the Redux store to the React application.
-
 
 export default configureStore;

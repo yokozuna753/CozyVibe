@@ -41,21 +41,21 @@ export const createSpot = (spot) => async (dispatch) => {
   return response;
 };
 
-const GET_CURRENT_SPOT = "spots/getCurrentSpot";
+// const GET_CURRENT_SPOT = "spots/getCurrentSpot";
 
-function getCurrentSpot(spot) {
-  return {
-    type: GET_CURRENT_SPOT,
-    payload: spot,
-  };
-}
+// function getCurrentSpot(spot) {
+//   return {
+//     type: GET_CURRENT_SPOT,
+//     payload: spot,
+//   };
+// }
 
-export const currentSpot = (id) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${id}`);
-  const data = await response.json();
-  dispatch(getCurrentSpot(data));
-  return response;
-};
+// export const currentSpot = (id) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/spots/${id}`);
+//   const data = await response.json();
+//   dispatch(getCurrentSpot(data));
+//   return response;
+// };
 
 const UPDATE_SPOT = "spots/updateSpot";
 
@@ -81,6 +81,8 @@ export const update = (spot) => async (dispatch) => {
   // return response;
 };
 
+// !create a new reducer for current spot
+
 const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
@@ -95,8 +97,8 @@ const spotsReducer = (state = initialState, action) => {
       const { id } = action.payload;
       console.log("PAYLOAD ===> ", action.payload);
       return { ...state, [id]: action.payload };
-    case GET_CURRENT_SPOT:
-      return { ...state, currentSpot: action.payload };
+    // case GET_CURRENT_SPOT:
+    //   return { ...state, currentSpot: action.payload };
     default:
       return state;
   }

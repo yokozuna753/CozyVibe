@@ -23,7 +23,9 @@ function SpotList({ spots }) {
   }, [dispatch]);
 
   
-  const length = Object.values(spots).length - 1;
+
+  
+  const length = Object.values(spots)
   spots = Object.values(spots)
 
 
