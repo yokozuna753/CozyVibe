@@ -13,8 +13,8 @@ function UpdateASpot() {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  // const [lat, setLat] = useState("");
-  // const [lng, setLng] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -45,7 +45,7 @@ function UpdateASpot() {
         "Description needs a minimum of 30 characters";
     if (name.length < 1) validationErrors.name = "Name is required";
     if (price.length < 2) validationErrors.price = "Price is required";
-    if (previewImage.length < 2 && !previewImage.includes(".com"))
+    if (previewImage.length && !previewImage.includes(".com"))
       validationErrors.previewImage = "Preview image is required";
     if (
       image.length &&
@@ -55,12 +55,16 @@ function UpdateASpot() {
     )
       validationErrors.image = "Image URL must end in .png, .jpg, or .jpeg";
 
+    if ((lat && lat < -90) || lat > 90)
+      validationErrors.lat = "Latitude must be within -90 and 90";
+    if ((lng && lng < -180) || lng > 180)
+      validationErrors.lng = "Longitude must be within -180 and 180";
+
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
       // If there are no validation errors, dispatch createSpot
       const updatedSpot = {
-        
         address,
         city,
         state,
@@ -68,13 +72,14 @@ function UpdateASpot() {
         name,
         description,
         price,
-        lat: 90,
-        lng: 90,
       };
 
+      if (lat) updatedSpot.lat = Number(lat);
+      else lat = undefined;
+      if (lng) updatedSpot.lng = Number(lng);
+      else lng = undefined;
+
       if (formType === "Update your Spot") dispatch(update(updatedSpot, id));
-      const values = Object.keys(spots);
-      const lastId = Number(values[values.length - 1]) + 1;
       navigate(`/spots/${id}`);
       reset();
     }
@@ -122,7 +127,7 @@ function UpdateASpot() {
           </label>
           {errors.address && <p style={{ color: "red" }}>{errors.address} </p>}
           <label>
-            <div id="form-side-by-side">
+            <div id="update-city-state">
               <p>City</p>
               <input
                 type="text"
@@ -137,6 +142,22 @@ function UpdateASpot() {
                 onChange={(e) => setState(e.target.value)}
               />
               {errors.state && <p style={{ color: "red" }}>{errors.state} </p>}
+            </div>
+            <div id="update-lat-lng">
+              <p>Latitude</p>
+              <input
+                type="text"
+                placeholder="Example: 87.948"
+                onChange={(e) => setLat(e.target.value)}
+              />
+              {errors.lat && <p style={{ color: "red" }}>{errors.lat} </p>}
+              <p>Longitude</p>
+              <input
+                type="text"
+                placeholder="Example: 132.8787"
+                onChange={(e) => setLng(e.target.value)}
+              />
+              {errors.lng && <p style={{ color: "red" }}>{errors.lng} </p>}
             </div>
           </label>
         </div>

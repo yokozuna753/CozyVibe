@@ -61,6 +61,8 @@ function updateSpot(spot){
 
 export const update = (spot, id) => async (dispatch) => {
 
+  console.log('SPOT AND ID TO BE UPDATED', spot, id);
+
  
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: "PUT",
@@ -70,7 +72,7 @@ export const update = (spot, id) => async (dispatch) => {
 
   const data = await response.json();
 
-
+  console.log('UPDATED SPOT',data);
 
   dispatch(updateSpot(data));
 
@@ -95,7 +97,16 @@ const spotsReducer = (state = initialState, action) => {
       return { ...state, [id]: action.payload };
     case UPDATE_SPOT:
       console.log('This is Payload ==>', action.payload);
-      return { ...state, [action.payload.id]: action.payload };
+      return {
+        ...state,
+        [action.payload.id]: {
+          ...state[action.payload.id], // Keep existing properties
+          ...action.payload, // Apply new updates
+          lat: action.payload.lat !== undefined ? action.payload.lat : state[action.payload.id].lat, // Retain existing lat if not provided
+          lng: action.payload.lng !== undefined ? action.payload.lng : state[action.payload.id].lng, // Retain existing lng if not provided
+        },
+      };
+    
     default:
       return state;
   }
