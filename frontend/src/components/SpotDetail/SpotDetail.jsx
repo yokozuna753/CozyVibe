@@ -38,7 +38,7 @@ function SpotDetail() {
         </h4>
         )}
         <div id="image-container">
-         {spot && spot["SpotImages"] && <img id="main-image" src={spot["SpotImages"][0].url} />} 
+         {spot && spot["SpotImages"] && <img id="main-image" src={spot["SpotImages"] && spot["SpotImages"][0].url} />} 
         {spot && spot["SpotImages"] &&
           spot["SpotImages"].slice(1).map((spot) => {
             return (

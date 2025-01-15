@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { createSpot } from "../../store/spots";
-import { createSpotImage } from "../../store/spotImages";
+import { update } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { FunctionContext } from "../../context/FormContext";
 
 // i set a handle submit function that will check for errors
 
-function CreateASpot() {
+function UpdateASpot() {
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -25,6 +25,8 @@ function CreateASpot() {
   const { formType, changeContext } = useContext(FunctionContext);
 
   const spots = useSelector((state) => state.spots);
+
+  const id = useParams().spotId;
 
   const dispatch = useDispatch();
 
@@ -57,7 +59,8 @@ function CreateASpot() {
 
     if (Object.keys(validationErrors).length === 0) {
       // If there are no validation errors, dispatch createSpot
-      const newSpot = {
+      const updatedSpot = {
+        
         address,
         city,
         state,
@@ -69,20 +72,11 @@ function CreateASpot() {
         lng: 90,
       };
 
-      const newImage = {};
+      if (formType === "Update your Spot") dispatch(update(updatedSpot, id));
       const values = Object.keys(spots);
       const lastId = Number(values[values.length - 1]) + 1;
-
-      if (formType === "Create a New Spot") {
-        dispatch(createSpot(newSpot));
-        newImage.id = lastId;
-        newImage.url = previewImage;
-        newImage.preview = true;
-
-        dispatch(createSpotImage(newImage));
-      }
-      // navigate(`/spots/${lastId}`);
-      // reset();
+      navigate(`/spots/${id}`);
+      reset();
     }
   }
 
@@ -231,4 +225,4 @@ function CreateASpot() {
   );
 }
 
-export default CreateASpot;
+export default UpdateASpot;

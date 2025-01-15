@@ -24,8 +24,6 @@ export default function ManageSpots() {
     changeContext('Update your Spot');
   }
 
-  console.log(formType);
-
   useEffect(() => {
     dispatch(fetchSpots());
   }, [dispatch]);
@@ -79,7 +77,7 @@ export default function ManageSpots() {
                       </div>
                     </div>
                     <div className="manage-buttons">
-                    <NavLink to='/spots/new'> <button onClick={handleClick2}>Update</button></NavLink>
+                    <NavLink to={`/spots/${id}/edit`}> <button onClick={handleClick2}>Update</button></NavLink>
 
                       <button>Delete</button>
                     </div>

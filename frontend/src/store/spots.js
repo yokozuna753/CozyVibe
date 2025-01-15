@@ -1,5 +1,7 @@
 import { csrfFetch } from "./csrf";
 
+// * GET SPOTS
+
 const GET_SPOTS = "spots/getSpots";
 
 export function getSpots(spots) {
@@ -15,6 +17,10 @@ export const fetchSpots = () => async (dispatch) => {
   dispatch(getSpots(data.Spots));
   return response;
 };
+
+// !-------------------------------
+
+// * CREATE A SPOT
 
 const CREATE_SPOT = "spots/createSpot";
 
@@ -35,27 +41,14 @@ export const createSpot = (spot) => async (dispatch) => {
   });
 
   const data = await response.json();
-  console.log("THIS IS THE DATA", data);
 
   dispatch(setSpot(data));
   return response;
 };
 
-// const GET_CURRENT_SPOT = "spots/getCurrentSpot";
+// !---------------------------------
 
-// function getCurrentSpot(spot) {
-//   return {
-//     type: GET_CURRENT_SPOT,
-//     payload: spot,
-//   };
-// }
-
-// export const currentSpot = (id) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/spots/${id}`);
-//   const data = await response.json();
-//   dispatch(getCurrentSpot(data));
-//   return response;
-// };
+// * UPDATE A SPOT
 
 const UPDATE_SPOT = "spots/updateSpot";
 
@@ -66,22 +59,25 @@ function updateSpot(spot){
   }
 }
 
-export const update = (spot) => async (dispatch) => {
-  const response = await csrfFetch("/api/spots/:spotId", {
+export const update = (spot, id) => async (dispatch) => {
+
+ 
+  const response = await csrfFetch(`/api/spots/${id}`, {
     method: "PUT",
     body: JSON.stringify(spot),
   });
 
-  console.log('THE RESPONSE', response);
 
-  // const data = await response.json();
+  const data = await response.json();
 
-  // dispatch(updateSpot(data));
 
-  // return response;
+
+  dispatch(updateSpot(data));
+
+  return response;
 };
 
-// !create a new reducer for current spot
+// !-------------------------------------
 
 const initialState = {};
 
@@ -97,8 +93,9 @@ const spotsReducer = (state = initialState, action) => {
       const { id } = action.payload;
       console.log("PAYLOAD ===> ", action.payload);
       return { ...state, [id]: action.payload };
-    // case GET_CURRENT_SPOT:
-    //   return { ...state, currentSpot: action.payload };
+    case UPDATE_SPOT:
+      console.log('This is Payload ==>', action.payload);
+      return { ...state, [action.payload.id]: action.payload };
     default:
       return state;
   }

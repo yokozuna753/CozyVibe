@@ -4,6 +4,7 @@ import sessionReducer from "./session";
 import spotsReducer from "./spots";
 import reviewsReducer from "./reviews";
 import currentSpotReducer from "./currentSpot";
+import spotImagesReducer from './spotImages';
 
 // import createStore, combineReducers, applyMiddleware,
 // and compose from the redux package. Import thunk from redux-thunk.
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   spots: spotsReducer,
   reviews: reviewsReducer,
   currentSpot: currentSpotReducer,
+  spotImages: spotImagesReducer,
 });
 
 /*

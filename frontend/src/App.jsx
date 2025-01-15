@@ -6,6 +6,7 @@ import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import CreateASpot from "./components/CreateASpot/CreateASpot.jsx";
 import SpotDetail from "./components/SpotDetail/SpotDetail.jsx";
 import ManageSpots from "./components/ManageSpots/ManageSpots.jsx";
+import UpdateASpot from "./components/UpdateASpot";
 import * as sessionActions from "./store/session";
 
 function Layout() {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
         path: "/spots/current",
         element: <ManageSpots />,
       },
+      {
+        path:'/spots/:spotId/edit',
+        element: <UpdateASpot />
+      }
     ],
   },
 ]);
