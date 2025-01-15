@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createSpot } from "../../store/spots";
+import { createSpot, update } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -21,11 +21,9 @@ function CreateASpot() {
   const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
 
-
-
   const { formType, changeContext } = useContext(FunctionContext);
 
-  console.log('FORM TYPE ===>', formType,);
+
 
   const spots = useSelector((state) => state.spots);
 
@@ -71,11 +69,13 @@ function CreateASpot() {
         lat: 90,
         lng: 90,
       };
-      dispatch(createSpot(newSpot));
+
+      if (formType === "Update your Spot") dispatch(update(newSpot));
+      else dispatch(createSpot(newSpot));
       const values = Object.keys(spots);
       const lastId = Number(values[values.length - 1]) + 1;
-      navigate(`/spots/${lastId}`);
-      reset();
+      // navigate(`/spots/${lastId}`);
+      // reset();
     }
   }
 

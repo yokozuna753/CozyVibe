@@ -40,7 +40,7 @@ function SpotDetail() {
           spot["SpotImages"].slice(1).map((spot) => {
             return (
               <img
-                key={spot.id}
+                key={spot.id + 1}
                 className="detail-images"
                 src={`${spot.url}`}
               />

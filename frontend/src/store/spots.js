@@ -46,15 +46,39 @@ const GET_CURRENT_SPOT = "spots/getCurrentSpot";
 function getCurrentSpot(spot) {
   return {
     type: GET_CURRENT_SPOT,
-    payload: spot
+    payload: spot,
   };
 }
 
 export const currentSpot = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${id}`);
   const data = await response.json();
-  dispatch(getCurrentSpot(data))
-  return response
+  dispatch(getCurrentSpot(data));
+  return response;
+};
+
+const UPDATE_SPOT = "spots/updateSpot";
+
+function updateSpot(spot){
+  return {
+    type: UPDATE_SPOT,
+    payload: spot
+  }
+}
+
+export const update = (spot) => async (dispatch) => {
+  const response = await csrfFetch("/api/spots/:spotId", {
+    method: "PUT",
+    body: JSON.stringify(spot),
+  });
+
+  console.log('THE RESPONSE', response);
+
+  // const data = await response.json();
+
+  // dispatch(updateSpot(data));
+
+  // return response;
 };
 
 const initialState = {};
@@ -72,7 +96,7 @@ const spotsReducer = (state = initialState, action) => {
       console.log("PAYLOAD ===> ", action.payload);
       return { ...state, [id]: action.payload };
     case GET_CURRENT_SPOT:
-    return {...state, currentSpot: action.payload}
+      return { ...state, currentSpot: action.payload };
     default:
       return state;
   }

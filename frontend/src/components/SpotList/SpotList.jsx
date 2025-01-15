@@ -22,7 +22,11 @@ function SpotList({ spots }) {
     dispatch(fetchSpots());
   }, [dispatch]);
 
-  spots = Object.values(spots);
+  
+  const length = Object.values(spots).length - 1;
+  spots = Object.values(spots)
+
+
 
   useSelector((state) => state.spots);
 
@@ -31,7 +35,7 @@ function SpotList({ spots }) {
       {spots.map(
         ({ id, name, city, state, avgRating, price, previewImage }) => {
           return (
-            <div className="list" key={id}>
+            <div className="list" key={`${id}-${price}`}>
               <div className="tooltip-container">
                 <NavLink to={`/spots/${id}`}><img className="spot-image" src={previewImage} /></NavLink>
                 <span className="tooltip-text">{name}</span>

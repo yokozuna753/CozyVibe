@@ -34,7 +34,13 @@ export default function ManageSpots() {
 
   const sessionUser = useSelector((state) => state.session.user);
 
-  const spotsArray = Object.values(spots);
+  let spotsArray = Object.values(spots);
+
+  const length = spotsArray.length - 1;
+
+  spotsArray = spotsArray.slice(0, length);
+
+
 
 
 
