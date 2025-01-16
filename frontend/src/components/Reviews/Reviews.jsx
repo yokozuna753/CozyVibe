@@ -21,11 +21,10 @@ function Reviews({ spot, reviewsWord }) {
   const reviews = useSelector((state) => state.reviews);
 
   // make the reviews state object into an array
-  const reviewsArray = Object.values(reviews);
+  const reviewsArray = Object.values(reviews).reverse();
 
   // define an array to push reviews into
   let spotReviews = [];
-
 
   // find the reviews in the state that match the spot id of the current spot
   reviewsArray.forEach((review) => {
@@ -40,8 +39,9 @@ function Reviews({ spot, reviewsWord }) {
   const userPostedReview =
     spotReviews &&
     user &&
-    spotReviews.find((review) => Number(review.id) === Number(user.id)) ? true : false;
-
+    spotReviews.find((review) => Number(review.id) === Number(user.id))
+      ? true
+      : false;
 
   // if the spot exists, get the owner of the spot
   const current = spot && spot.Owner;
@@ -58,18 +58,19 @@ function Reviews({ spot, reviewsWord }) {
 
   return (
     <div>
-      {spot && spot.numReviews > 0 ? (  // if the spot exists and it has reviews, render the below
+      {spot && spot.numReviews > 0 ? ( // if the spot exists and it has reviews, render the below
         <h2 id="reviews-h2">
           {" "}
           <FaStar id="star2" />
           {spot.avgStarRating}
           {" · "} {spot.numReviews} {`${reviewsWord}`}{" "}
         </h2>
-      ) : ( // if it doesnt exist, render the below
+      ) : (
+        // if it doesnt exist, render the below
         <h2 id="reviews-h2">
           {" "}
           <FaStar id="star2" />
-          New 
+          New
         </h2>
       )}
       {user && !userPostedReview && !isOwner && <PostReviewButton />}

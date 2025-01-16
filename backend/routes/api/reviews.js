@@ -36,7 +36,7 @@ const validateReviews = [
 
 const router = express.Router();
 
-// * 1. GET  /api/reviews/current - Get all Reviews of the Current User
+// * 1.  GET  /api/reviews/current - Get all Reviews of the Current User
 router.get("/current", requireAuth, async (req, res) => {
   const { id } = req.user;
 

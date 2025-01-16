@@ -139,10 +139,13 @@ async function addExtraSpotInfo(spot) {
 
   let avgRating = 0;
   if (reviews.length > 0) {
-    const sum = reviews.reduce((acc, review) => acc + review.stars, 0);
+    const sum = reviews.reduce((acc, review) => {
+      return acc + review.dataValues.stars;
+    }, 0);
     avgRating = sum / reviews.length;
     avgRating = parseFloat(avgRating.toFixed(1)); // Round to one decimal place
   }
+
   spotData.avgRating = avgRating > 0 ? avgRating : 0;
 
   // * Get previewImage
@@ -196,14 +199,12 @@ router.get(
         })
       );
 
-      const spots = spotsWithInfo.map(spot => ({
+      const spots = spotsWithInfo.map((spot) => ({
         ...spot,
         lat: parseFloat(spot.lat),
         lng: parseFloat(spot.lng),
-        price: parseFloat(spot.price)
+        price: parseFloat(spot.price),
       }));
-
-
 
       return res.status(200).json({ Spots: spots, page, size });
     } catch (error) {
@@ -223,7 +224,7 @@ router.get("/current", requireAuth, async (req, res) => {
     const spotsWithInfo = await Promise.all(
       userSpots.map(async (spot) => {
         const spotWithInfo = await addExtraSpotInfo(spot);
-        
+
         // Ensure lat, lng, and price are numbers
         spotWithInfo.lat = Number(spotWithInfo.lat);
         spotWithInfo.lng = Number(spotWithInfo.lng);
@@ -239,7 +240,6 @@ router.get("/current", requireAuth, async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
-
 
 // * 3. GET /api/spots/:spotId/reviews - Get all Reviews by a Spot's id
 router.get("/:spotId/reviews", async (req, res) => {
@@ -262,6 +262,7 @@ router.get("/:spotId/reviews", async (req, res) => {
           "createdAt",
           "updatedAt",
         ],
+        order: [['createdAt', 'DESC']],
         include: [
           {
             model: User,
@@ -285,7 +286,6 @@ router.get("/:spotId/reviews", async (req, res) => {
         let reviewObj = review.toJSON();
 
         if (review && !review.ReviewImages) {
-          console.log("no images here");
           reviewObj.ReviewImages = foundReviewImage;
 
           return reviewObj;
@@ -305,7 +305,8 @@ router.get("/:spotId/reviews", async (req, res) => {
 router.get("/:spotId", async (req, res) => {
   try {
     const { spotId } = req.params;
-    const spot = await Spot.findByPk(spotId, { // find the spot by the id
+    const spot = await Spot.findByPk(spotId, {
+      // find the spot by the id
       include: [
         {
           model: SpotImage,
@@ -319,8 +320,6 @@ router.get("/:spotId", async (req, res) => {
         },
       ],
     });
-
-
 
     if (!spot) {
       return res.status(404).json({ message: "Spot couldn't be found" });
@@ -593,8 +592,8 @@ router.put(
       spot.city = city;
       spot.state = state;
       spot.country = country;
-      if(lat) spot.lat = lat;
-      if(lat) spot.lng = lng;
+      if (lat) spot.lat = lat;
+      if (lat) spot.lng = lng;
       spot.name = name;
       spot.description = description;
       spot.price = price;
