@@ -30,7 +30,7 @@ function SpotList({ spots }) {
 
 
 
-  useSelector((state) => state.spots);
+
 
   return (
     <div key={1} id="ul">

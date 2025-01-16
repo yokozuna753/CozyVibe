@@ -12,8 +12,6 @@ function SpotDetail() {
   const id = useParams().id;
   const spot = useSelector((state) => state.currentSpot);
 
-  console.log('THIS IS THE CURRENT ===>', spot);
-
   let owner;
 
   if (spot) owner = spot.Owner;
@@ -24,8 +22,8 @@ function SpotDetail() {
 
   let reviewsWord;
   spot && spot.numReviews > 1
-    ? (reviewsWord = "reviews")
-    : (reviewsWord = "review");
+    ? (reviewsWord = "Reviews")
+    : (reviewsWord = "Review");
 
   
   return (
@@ -60,7 +58,7 @@ function SpotDetail() {
             <div>
               <p>
                 {`$${spot.price} night`} <FaStar /> {spot.avgStarRating}{" "}
-                {" -- "}
+                {" · "}
                 {spot.numReviews} {`${reviewsWord}`}
               </p>
               <button>Reserve</button>

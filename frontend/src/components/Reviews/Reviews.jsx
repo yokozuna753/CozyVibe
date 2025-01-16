@@ -63,7 +63,7 @@ function Reviews({ spot, reviewsWord }) {
           {" "}
           <FaStar id="star2" />
           {spot.avgStarRating}
-          {" -- "} {spot.numReviews} {`${reviewsWord}`}{" "}
+          {" · "} {spot.numReviews} {`${reviewsWord}`}{" "}
         </h2>
       ) : ( // if it doesnt exist, render the below
         <h2 id="reviews-h2">

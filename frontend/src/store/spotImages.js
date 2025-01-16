@@ -11,7 +11,7 @@ function setSpotImage(spotImage) {
   };
 }
 
-export const createSpotImage = (spotImage) => async (dispatch) => {
+export const createSpotImage = (spotImage) => async (dispatch) => { // * Add an Image to a Spot once its created
 
   const response = await csrfFetch(`/api/spots/${spotImage.id}/images`, {
     method: "POST",
@@ -26,6 +26,15 @@ export const createSpotImage = (spotImage) => async (dispatch) => {
 };
 
 // !------------------------------
+
+/*
+when the user adds an image to the previewimageurl field in the update form
+i need to update the previewImage in the spots state.
+
+to update this field, the spots are fetched and the first image found is created as previewImage.
+
+
+*/
 
 const initialState = {};
 

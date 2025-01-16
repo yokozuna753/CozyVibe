@@ -2,35 +2,53 @@ import { useState } from "react";
 import { update } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FunctionContext } from "../../context/FormContext";
 
 // i set a handle submit function that will check for errors
 
 function UpdateASpot() {
-  const [country, setCountry] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
-  const [description, setDescription] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const current = useSelector((state) => state.currentSpot);
+
+  const [country, setCountry] = useState(current.country);
+  const [address, setAddress] = useState(current.address);
+  const [city, setCity] = useState(current.city);
+  const [state, setState] = useState(current.state);
+  const [lat, setLat] = useState(current.lat);
+  const [lng, setLng] = useState(current.lng);
+  const [description, setDescription] = useState(current.description);
+  const [name, setName] = useState(current.name);
+  const [price, setPrice] = useState(current.price);
   const [previewImage, setPreviewImage] = useState("");
   const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
 
   const { formType, changeContext } = useContext(FunctionContext);
 
-  const spots = useSelector((state) => state.spots);
-
   const id = useParams().spotId;
+
+  //* i already have the id. i need to get the info from the current spot
+  // * once "update" is clicked, set the current spot to be that spots id
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (current) {
+      setCountry(current.country || "");
+      setAddress(current.address || "");
+      setCity(current.city || "");
+      setState(current.state || "");
+      setLat(current.lat || "");
+      setLng(current.lng || "");
+      setDescription(current.description || "");
+      setName(current.name || "");
+      setPrice(current.price || "");
+      setPreviewImage(current.previewImage || "");
+    }
+  }, [current]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -45,7 +63,7 @@ function UpdateASpot() {
         "Description needs a minimum of 30 characters";
     if (name.length < 1) validationErrors.name = "Name is required";
     if (price.length < 2) validationErrors.price = "Price is required";
-    if (previewImage.length && !previewImage.includes(".com"))
+    if (previewImage && previewImage.length && !previewImage.includes(".com"))
       validationErrors.previewImage = "Preview image is required";
     if (
       image.length &&
@@ -113,6 +131,7 @@ function UpdateASpot() {
             <input
               type="text"
               placeholder="Country"
+              value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
           </label>
@@ -123,6 +142,7 @@ function UpdateASpot() {
               type="text"
               placeholder="Street Address"
               onChange={(e) => setAddress(e.target.value)}
+              value={address}
             />
           </label>
           {errors.address && <p style={{ color: "red" }}>{errors.address} </p>}
@@ -133,6 +153,7 @@ function UpdateASpot() {
                 type="text"
                 placeholder="City"
                 onChange={(e) => setCity(e.target.value)}
+                value={city}
               />
               {errors.city && <p style={{ color: "red" }}>{errors.city} </p>}
               <p>State</p>
@@ -140,6 +161,7 @@ function UpdateASpot() {
                 type="text"
                 placeholder="STATE"
                 onChange={(e) => setState(e.target.value)}
+                value={state}
               />
               {errors.state && <p style={{ color: "red" }}>{errors.state} </p>}
             </div>
@@ -149,6 +171,7 @@ function UpdateASpot() {
                 type="text"
                 placeholder="Example: 87.948"
                 onChange={(e) => setLat(e.target.value)}
+                value={lat}
               />
               {errors.lat && <p style={{ color: "red" }}>{errors.lat} </p>}
               <p>Longitude</p>
@@ -156,6 +179,7 @@ function UpdateASpot() {
                 type="text"
                 placeholder="Example: 132.8787"
                 onChange={(e) => setLng(e.target.value)}
+                value={lng}
               />
               {errors.lng && <p style={{ color: "red" }}>{errors.lng} </p>}
             </div>
@@ -172,6 +196,7 @@ function UpdateASpot() {
               onChange={(e) => setDescription(e.target.value)}
               type="text"
               placeholder="Please write at least 30 characters"
+              value={description}
             />
             {errors.description && (
               <p style={{ color: "red" }}>{errors.description} </p>
@@ -189,6 +214,7 @@ function UpdateASpot() {
               onChange={(e) => setName(e.target.value)}
               type="text"
               placeholder="Name of your spot"
+              value={name}
             />
             {errors.name && <p style={{ color: "red" }}>{errors.name} </p>}
           </label>
@@ -206,6 +232,7 @@ function UpdateASpot() {
                 onChange={(e) => setPrice(e.target.value)}
                 type="number"
                 placeholder="Price per night (USD)"
+                value={price}
               />
               {errors.price && <p style={{ color: "red" }}>{errors.price} </p>}
             </label>
@@ -219,6 +246,7 @@ function UpdateASpot() {
               onChange={(e) => setPreviewImage(e.target.value)}
               type="text"
               placeholder="Preview Image URL; example: google.com"
+              value={previewImage}
             />
             {errors.previewImage && (
               <p style={{ color: "red" }}>{errors.previewImage} </p>
@@ -239,7 +267,7 @@ function UpdateASpot() {
           </label>
         </div>
         <div>
-          <input type="submit" onSubmit={handleSubmit} />
+          <input type="submit" value="Update your Spot" onSubmit={handleSubmit} />
         </div>
       </form>
     </>

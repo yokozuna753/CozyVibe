@@ -81,6 +81,10 @@ export const update = (spot, id) => async (dispatch) => {
 
 // !-------------------------------------
 
+// if a spot is fetched, created, or updated, it is done so through the backend
+
+// i need to find a route or method to update the preview image url of a spot?
+
 const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {

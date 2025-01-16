@@ -7,40 +7,37 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { FunctionContext } from "../../context/FormContext";
-import './ManageSpots.css'
+import "./ManageSpots.css";
+import { currentSpot } from "../../store/currentSpot";
 
 export default function ManageSpots() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { formType, changeContext } = useContext(FunctionContext);
+  const spots = useSelector((state) => state.spots);
 
-  function handleClick(){
-    changeContext('Create a New Spot');
+  const { changeContext } = useContext(FunctionContext);
+
+  function handleClick() {
+    changeContext("Create a New Spot");
   }
 
-
-  function handleClick2(){
-    changeContext('Update your Spot');
+  function handleClick2(e) {
+    changeContext("Update your Spot");
+    console.log("this is the event", e);
   }
 
   useEffect(() => {
     dispatch(fetchSpots());
   }, [dispatch]);
 
-  const spots = useSelector((state) => state.spots);
-
   const sessionUser = useSelector((state) => state.session.user);
 
   let spotsArray = Object.values(spots);
 
-  const length = spotsArray.length - 1;
+  // const length = spotsArray.length - 1;
 
-  spotsArray = spotsArray.slice(0, length);
-
-
-
-
+  // spotsArray = spotsArray.slice(0, length);
 
   return (
     <div id="manage-spots-page">
@@ -48,12 +45,12 @@ export default function ManageSpots() {
         <ul className="manage">
           <h2 id="manage-title">Manage Your Spots</h2>
           <NavLink id="create-spot" to="/spots/new">
-            <button onClick={handleClick} >Create a New Spot</button>{" "}
+            <button onClick={handleClick}>Create a New Spot</button>{" "}
           </NavLink>
           <div id="ul-manage">
             {spotsArray.map(
               ({ id, name, city, state, avgRating, price, previewImage }) => {
-                return ( id === sessionUser.id ?
+                return id === sessionUser.id ? (
                   <div className="list" key={id}>
                     <div className="tooltip-container">
                       <NavLink to={`/spots/${id}`}>
@@ -77,13 +74,23 @@ export default function ManageSpots() {
                       </div>
                     </div>
                     <div className="manage-buttons">
-                    <NavLink to={`/spots/${id}/edit`}> <button onClick={handleClick2}>Update</button></NavLink>
+                      <NavLink to={`/spots/${id}/edit`}>
+                        {" "}
+                        <button
+                          onClick={() => {
+                            changeContext("Update your Spot");
+                            dispatch(currentSpot(id, previewImage));
+
+                          }}
+                        >
+                          Update
+                        </button>
+                      </NavLink>
 
                       <button>Delete</button>
                     </div>
                   </div>
-                  : null
-                );
+                ) : null;
               }
             )}
           </div>
