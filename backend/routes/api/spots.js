@@ -145,7 +145,7 @@ async function addExtraSpotInfo(spot) {
   }
   spotData.avgRating = avgRating > 0 ? avgRating : 0;
 
-  // Get previewImage
+  // * Get previewImage
   const previewImage = await SpotImage.findOne({
     where: {
       spotId: spot.id,
@@ -508,8 +508,6 @@ router.post(
     let { spotId } = req.params;
 
     const userId = req.user.id;
-    // console.log(userId);
-    // console.log(spotId);
 
     const existingReview = await Review.findOne({
       where: {
@@ -595,8 +593,8 @@ router.put(
       spot.city = city;
       spot.state = state;
       spot.country = country;
-      spot.lat = lat;
-      spot.lng = lng;
+      if(lat) spot.lat = lat;
+      if(lat) spot.lng = lng;
       spot.name = name;
       spot.description = description;
       spot.price = price;

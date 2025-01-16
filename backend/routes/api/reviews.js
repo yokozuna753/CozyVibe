@@ -93,7 +93,7 @@ router.get("/current", requireAuth, async (req, res) => {
       delete reviewObj.Spot.SpotImages;
 
       reviewImages = reviewImages[0].dataValues;
-      console.log("THESE ARE THE IMAGES =>>>!!!!!!!!!!", reviewImages);
+      
       reviewObj.ReviewImages = reviewImages;
     }
 
