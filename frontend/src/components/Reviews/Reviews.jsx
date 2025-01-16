@@ -62,7 +62,7 @@ function Reviews({ spot, reviewsWord }) {
         <h2 id="reviews-h2">
           {" "}
           <FaStar id="star2" />
-          {spot.avgStarRating}
+          {spot.avgStarRating && spot.avgStarRating.toString().includes('.') ? spot.avgStarRating : `${spot.avgStarRating}.0`}
           {" · "} {spot.numReviews} {`${reviewsWord}`}{" "}
         </h2>
       ) : (

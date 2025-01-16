@@ -57,7 +57,7 @@ function SpotDetail() {
           {spot && (
             <div>
               <p>
-                {`$${spot.price} night`} <FaStar /> {spot.avgStarRating}{" "}
+                {`$${spot.price} night`} <FaStar /> {spot.avgStarRating && spot.avgStarRating.toString().includes('.') ? spot.avgStarRating : `${spot.avgStarRating}.0`}{" "}
                 {" · "}
                 {spot.numReviews} {`${reviewsWord}`}
               </p>

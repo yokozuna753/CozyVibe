@@ -53,7 +53,7 @@ function SpotList({ spots }) {
                 <div className="star-rating">
                   <li>
                     {" "}
-                    <FaStar /> {avgRating ? avgRating : "New"}{" "}
+                    <FaStar /> {avgRating.toString().includes('.') ? avgRating :  avgRating ? `${avgRating}.0` : "New"}{" "}
                   </li>
                 </div>
               </div>
