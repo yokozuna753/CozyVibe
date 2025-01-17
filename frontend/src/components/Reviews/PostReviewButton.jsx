@@ -1,14 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { FaUserCircle } from "react-icons/fa";
-import * as sessionActions from "../../store/session";
 import OpenModalMenuItem from "../OpenModalButton";
 import SubmitReviewModal from "../SubmitReviewModal/SubmitReviewModal";
 
 
 
-function PostReviewButton({ user }) {
-  const dispatch = useDispatch();
+function PostReviewButton({id}) {
+
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -33,23 +30,14 @@ function PostReviewButton({ user }) {
 
   const closeMenu = () => setShowMenu(false);
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-
   return (
     <>
-      <button  onClick={toggleMenu}>
-        Post Your Review
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        
-          <>
-            <OpenModalMenuItem
-              itemText="Log In"
+      <OpenModalMenuItem
+              itemText="Post Your Review"
               onItemClick={closeMenu}
-              modalComponent={<SubmitReviewModal />}
+              modalComponent={<SubmitReviewModal id={id} />}
+              buttonText='Post Your Review'
             />
-          </>
-      </ul>
     </>
   );
 }

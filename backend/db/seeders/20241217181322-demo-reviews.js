@@ -22,13 +22,6 @@ module.exports = {
         },
         {
           spotId: 2,
-          userId: 3,
-          review:
-            "this is the most wonderful property in the world. It would be an absolute dream to live here, and the fact that i get to vacation here is unimaginable. 10/10",
-          stars: 5,
-        },
-        {
-          spotId: 2,
           userId: 1,
           review:
             "this is the most wonderful property in the world. It would be an absolute dream to live here, and the fact that i get to vacation here is unimaginable. 10/10",
@@ -36,7 +29,7 @@ module.exports = {
         },
         {
           spotId: 1,
-          userId: 2,
+          userId: 3,
           review:
             "this is the most wonderful property in the world. It would be an absolute dream to live here, and the fact that i get to vacation here is unimaginable. 10/10",
           stars: 5,
@@ -48,13 +41,13 @@ module.exports = {
             "this should be the most RECENT REVIEW!!!",
           stars: 3,
         },
-        // {
-        //   spotId: 3,
-        //   userId: 1,
-        //   review:
-        //     "this is the most wonderful property in the world. It would be an absolute dream to live here, and the fact that i get to vacation here is unimaginable. 10/10",
-        //   stars: 1,
-        // },
+        {
+          spotId: 3,
+          userId: 2,
+          review:
+            "this is the most wonderful property in the world. It would be an absolute dream to live here, and the fact that i get to vacation here is unimaginable. 10/10",
+          stars: 1,
+        },
       ],
       { validate: true }
     );

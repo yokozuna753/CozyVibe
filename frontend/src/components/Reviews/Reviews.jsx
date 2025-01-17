@@ -2,19 +2,15 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa";
+import { useParams } from "react-router";
 import { fetchReviews } from "../../store/reviews.js";
 import PostReviewButton from "./PostReviewButton.jsx";
 
 function Reviews({ spot, reviewsWord }) {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    {
-      spot && dispatch(fetchReviews(spot.id));
-    }
-  }, [dispatch, spot]);
-
-  // get the current user
+  const id = useParams().id;
+  let spotReviews = [];
   const user = useSelector((state) => state.session.user);
 
   // get the reviews state
@@ -23,13 +19,26 @@ function Reviews({ spot, reviewsWord }) {
   // make the reviews state object into an array
   const reviewsArray = Object.values(reviews).reverse();
 
-  // define an array to push reviews into
-  let spotReviews = [];
-
-  // find the reviews in the state that match the spot id of the current spot
   reviewsArray.forEach((review) => {
     if (review.spotId === spot.id) spotReviews.push(review);
   });
+
+  // useEffect(()=> {
+  //   dispatch()
+  // }, [])
+
+
+  useEffect(() => {
+    {
+      spot && dispatch(fetchReviews(spot.id));
+    }
+  }, [dispatch, spot]);
+
+  // get the current user
+
+  // define an array to push reviews into
+
+  // find the reviews in the state that match the spot id of the current spot
 
   //! POST REVIEW BUTTON -
   // user didn't post a review for that Spot yet
@@ -62,7 +71,9 @@ function Reviews({ spot, reviewsWord }) {
         <h2 id="reviews-h2">
           {" "}
           <FaStar id="star2" />
-          {spot.avgStarRating && spot.avgStarRating.toString().includes('.') ? spot.avgStarRating : `${spot.avgStarRating}.0`}
+          {spot.avgStarRating && spot.avgStarRating.toString().includes(".")
+            ? spot.avgStarRating
+            : `${spot.avgStarRating}.0`}
           {" · "} {spot.numReviews} {`${reviewsWord}`}{" "}
         </h2>
       ) : (
@@ -73,10 +84,12 @@ function Reviews({ spot, reviewsWord }) {
           New
         </h2>
       )}
-      {user && !userPostedReview && !isOwner && <PostReviewButton />}
-      <div>
-        {spotReviews
-          ? spotReviews.map((review) => {
+      {user && !userPostedReview && !isOwner && <PostReviewButton id={id} />}
+
+      {spotReviews && (
+        <div>
+          {spotReviews.length ? (
+            spotReviews.map((review) => {
               const date = new Date(review.createdAt);
               const formatter = new Intl.DateTimeFormat("en-US", {
                 month: "long", // Full month name
@@ -85,15 +98,20 @@ function Reviews({ spot, reviewsWord }) {
 
               const formattedDate = formatter.format(date);
               return (
-                <div key={review.id}>
-                  <h2>{review.User.firstName}</h2>
-                  <h4>{formattedDate}</h4>
-                  <p>{review.review}</p>
-                </div>
+                review && (
+                  <div key={review.id}>
+                    <h2>{review.User.firstName}</h2>
+                    <h4>{formattedDate}</h4>
+                    <p>{review.review}</p>
+                  </div>
+                )
               );
             })
-          : "Be the first to post a review!"}
-      </div>
+          ) : (
+            <h4>Be the first to post a review!</h4>
+          )}
+        </div>
+      )}
     </div>
   );
 }

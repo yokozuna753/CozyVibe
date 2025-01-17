@@ -22,7 +22,7 @@ function CreateASpot() {
   const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
 
-  const { formType, changeContext } = useContext(FunctionContext);
+  const { formType } = useContext(FunctionContext);
 
   const spots = useSelector((state) => state.spots);
 
@@ -81,8 +81,8 @@ function CreateASpot() {
 
         dispatch(createSpotImage(newImage));
       }
-      // navigate(`/spots/${lastId}`);
-      // reset();
+      navigate(`/spots/${lastId}`);
+      reset();
     }
   }
 

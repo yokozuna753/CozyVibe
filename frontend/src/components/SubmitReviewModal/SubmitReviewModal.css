@@ -1,0 +1,36 @@
+#review-box-1 {
+  width: 100%; /* Make the box take up the full width of the form */
+  height: 150px; /* Increase height to make it look like a text area */
+  font-size: 16px; /* Increase text size for better readability */
+  padding: 10px; /* Add padding for a better visual appearance */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Round the corners slightly */
+  box-sizing: border-box; /* Ensure padding doesn't affect the width */
+  resize: none;
+}
+
+
+
+#review-submit {
+  height: 40px;
+  width: 92%;
+  display: flex;
+  margin-bottom: 25px;
+  align-self: center;
+}
+
+#error-message{
+  text-align: center;
+  color: red;
+}
+
+.rating-input {
+  font-size: x-large;
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+}
+
+.filled{
+  color: red;
+}
