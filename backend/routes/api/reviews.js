@@ -246,33 +246,38 @@ router.put("/:reviewId", validateReviews, requireAuth, async (req, res) => {
   return res.status(200).json(updated);
 });
 
-// * 4. DELETE  /api/reviews/:reviewId - Delete a Review Image
+// * 4. DELETE  /api/reviews/:reviewId - Delete a Review
 router.delete("/:reviewId", requireAuth, async (req, res) => {
   try {
     let id = req.params.reviewId;
 
+    
     id = Number(id);
-
+    
     // Find the review by ID
     let foundReview = await Review.findOne({
       where: {
         id
-      }
+      },
     });
-
+    
     // If the review doesn't exist, return 404
     if (!foundReview) {
       return res.status(404).json({ message: "Review couldn't be found" });
     }
-
+    
     
     // Check if the current user is the owner of the review
     if (foundReview.userId !== req.user.id) {
       return res.status(403).json({ message: "Forbidden" });
     }
     
-    await foundReview.destroy();
-
+    await Review.destroy({
+      where: {
+        id
+      },
+      force: true,
+    });
      res.status(200).json({
       message: "Successfully deleted",
     });

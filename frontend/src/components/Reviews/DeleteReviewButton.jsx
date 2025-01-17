@@ -1,18 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import OpenModalMenuItem from "../OpenModalButton";
-import SubmitReviewModal from "../SubmitReviewModal/SubmitReviewModal";
+
+
+import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";
 
 
 
-function PostReviewButton({id}) {
+function DeleteReviewButton({id}) {
 
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  // const toggleMenu = (e) => {
-  //   e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
-  //   setShowMenu(!showMenu);
-  // };
+//   const toggleMenu = (e) => {
+//     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+//     setShowMenu(!showMenu);
+//   };
+
+
 
   useEffect(() => {
     if (!showMenu) return;
@@ -33,13 +37,13 @@ function PostReviewButton({id}) {
   return (
     <>
       <OpenModalMenuItem
-              itemText="Post Your Review"
+              itemText="Delete your Review"
               onItemClick={closeMenu}
-              modalComponent={<SubmitReviewModal id={id} />}
-              buttonText='Post Your Review'
+              modalComponent={<DeleteReviewModal id={id} />}
+              buttonText='Delete'
             />
     </>
   );
 }
 
-export default PostReviewButton;
+export default DeleteReviewButton;

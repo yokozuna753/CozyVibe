@@ -6,17 +6,20 @@ import { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import Reviews from "../Reviews/Reviews";
 import "./SpotDetail.css";
+import { fetchReviews } from "../../store/reviews";
 
 function SpotDetail() {
   const dispatch = useDispatch();
   const id = useParams().id;
   const spot = useSelector((state) => state.currentSpot);
+  useSelector((state) => state.reviews);
 
   let owner;
 
   if (spot) owner = spot.Owner;
 
   useEffect(() => {
+    dispatch(fetchReviews(id))
     dispatch(currentSpot(id));
   }, [dispatch, id]);
 

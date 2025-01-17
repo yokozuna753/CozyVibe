@@ -1,20 +1,26 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+// import { currentSpot } from "../../store/currentSpot.js";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "react-router";
 import { fetchReviews } from "../../store/reviews.js";
 import PostReviewButton from "./PostReviewButton.jsx";
+import DeleteReviewButton from "./DeleteReviewButton.jsx"
 
 function Reviews({ spot, reviewsWord }) {
   const dispatch = useDispatch();
 
   const id = useParams().id;
+
   let spotReviews = [];
   const user = useSelector((state) => state.session.user);
 
   // get the reviews state
   const reviews = useSelector((state) => state.reviews);
+
+
+
 
   // make the reviews state object into an array
   const reviewsArray = Object.values(reviews).reverse();
@@ -24,10 +30,10 @@ function Reviews({ spot, reviewsWord }) {
   });
 
   // useEffect(()=> {
-  //   dispatch()
-  // }, [])
-
-
+  //   dispatch(fetchReviews(spot.id));
+  // }, [dispatch, spot.id])
+  
+  
   useEffect(() => {
     {
       spot && dispatch(fetchReviews(spot.id));
@@ -48,7 +54,7 @@ function Reviews({ spot, reviewsWord }) {
   const userPostedReview =
     spotReviews &&
     user &&
-    spotReviews.find((review) => Number(review.id) === Number(user.id))
+    spotReviews.find((review) => Number(review.userId) === Number(user.id))
       ? true
       : false;
 
@@ -56,14 +62,15 @@ function Reviews({ spot, reviewsWord }) {
   const current = spot && spot.Owner;
 
   // check if the owner's id matches the user id, return a boolean
-  const isOwner = current && user && current.id === user.id;
+  const isOwner = current && user ? current.id === user.id: false;
 
-  //   if(current) console.log('OWNER ID =>',spot.Owner.id);
-
-  //   if(user) console.log('CURRENT USER =>', user.id);
-  //   if (user) console.log("user POSTED OR NOT =>", userPostedReview);
-  //   if (current && user) console.log("ARE THEY THE OWNER?? =>", isOwner);
+    // if(user) console.log('CURRENT USER =>', user.id);
+    // if (user) console.log("user POSTED OR NOT =>", userPostedReview);
+    // if (current && user) console.log("ARE THEY THE OWNER?? =>", isOwner);
+    // console.log('SPOT REVIEWS ===>', spotReviews);
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
   return (
     <div>
@@ -84,7 +91,7 @@ function Reviews({ spot, reviewsWord }) {
           New
         </h2>
       )}
-      {user && !userPostedReview && !isOwner && <PostReviewButton id={id} />}
+      {user && !userPostedReview && !isOwner ? <PostReviewButton id={id} /> : ""}
 
       {spotReviews && (
         <div>
@@ -103,6 +110,7 @@ function Reviews({ spot, reviewsWord }) {
                     <h2>{review.User.firstName}</h2>
                     <h4>{formattedDate}</h4>
                     <p>{review.review}</p>
+                    { user && user.id === review.userId && userPostedReview ? <DeleteReviewButton id={review.id} className="review-delete">Delete</DeleteReviewButton> : ""  }
                   </div>
                 )
               );
