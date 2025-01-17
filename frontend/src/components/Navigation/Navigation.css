@@ -8,12 +8,16 @@ ul.profile-dropdown.hidden {
   justify-content: space-between;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 100;
   background-color: white;
-  width: 90%;
+  width: 100%;
   list-style-type: none;
   border-bottom: 1px solid gray;
   
+}
+
+#profile{
+  margin-right: 20px;
 }
 
 #logo {
@@ -84,5 +88,14 @@ li {
 
 ul{
   padding: none;
+}
+
+#log-button1{
+  margin: 10px 0px;
+}
+
+#log-button1:hover{
+  color: blue;
+  cursor: pointer;
 }
 

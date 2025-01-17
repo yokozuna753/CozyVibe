@@ -1,26 +1,22 @@
 // import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useSelector } from "react-redux";
-import { deleteReview, fetchReviews } from "../../store/reviews";
+import { removeSpot } from "../../store/spots";
 import "../SubmitReviewModal/SubmitReviewModal.css";
 
-function DeleteReviewModal({ id }) {
+function DeleteSpotModal({ id }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
-//   const userId = useSelector((state) => state.session.user.id);
+  //   const userId = useSelector((state) => state.session.user.id);
 
-
-// subscribe to the reviews state, grab the id for the review that matches the reviews id for the button clicked
-// this should be passed down from the reviews component since it holds the reviews
-
-  const spotId = useSelector((state) => state.currentSpot.id);
+  // subscribe to the reviews state, grab the id for the review that matches the reviews id for the button clicked
+  // this should be passed down from the reviews component since it holds the reviews
 
   const handleClick = async (e) => {
     e.preventDefault();
 
-    await dispatch(deleteReview(id, spotId));
+    await dispatch(removeSpot(id));
     closeModal();
   };
 
@@ -49,15 +45,17 @@ function DeleteReviewModal({ id }) {
         <h1>Confirm Delete</h1>
         {/* {errors && <h3 id="error-message">* {errors}</h3>} */}
         <div id="review-delete-layout">
-          <h3>Are you sure you want to remove this review?</h3>
-          <button className="review-delete-confirm" onClick={handleClick}>
-            Yes{"(Delete Review)"}
+          <h3>Are you sure you want to remove this spot?</h3>
+          <button className="spot-delete-confirm" onClick={handleClick}>
+            Yes{"(Delete Spot)"}
           </button>
-          <button className="review-delete-confirm" onClick={()=> closeModal()}>No {"(Keep Review)"}</button>
+          <button className="spot-delete-confirm" onClick={() => closeModal()}>
+            No {"(Keep Spot)"}
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-export default DeleteReviewModal;
+export default DeleteSpotModal;

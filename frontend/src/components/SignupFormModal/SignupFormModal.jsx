@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useModal } from '../../context/Modal';
-import * as sessionActions from '../../store/session';
-import './SignupForm.css';
+import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
+import * as sessionActions from "../../store/session";
+import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -12,8 +13,22 @@ function SignupFormModal() {
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [disabled, setDisabled] = useState();
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+
+  useEffect(() => {
+    // set disabled to the inverse of credential being less than 4 chars
+    // and the password being less than 6
+    setDisabled(
+      email.length < 4 ||
+        username.length < 4 ||
+        firstName.length < 1 ||
+        lastName.length < 1 ||
+        password.length < 6 ||
+        confirmPassword.length < 1
+    );
+  }, [email, username, firstName, lastName, password, confirmPassword]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +40,7 @@ function SignupFormModal() {
           username,
           firstName,
           lastName,
-          password
+          password,
         })
       )
         .then(closeModal)
@@ -33,18 +48,20 @@ function SignupFormModal() {
           const data = await res.json();
           if (data?.errors) {
             setErrors(data.errors);
+            console.log(errors);
           }
         });
     }
     return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+      confirmPassword:
+        "Confirm Password field must be the same as the Password field",
     });
   };
 
   return (
-    <div className='sign-up'>
+    <div className="sign-up">
       <form onSubmit={handleSubmit}>
-      <h1>Sign Up</h1>
+        <h1>Sign Up</h1>
         <label>
           Email
           <input
@@ -104,10 +121,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        <button type="submit" disabled={disabled}>Sign Up</button>
       </form>
     </div>
   );

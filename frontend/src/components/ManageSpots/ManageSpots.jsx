@@ -1,4 +1,3 @@
-import React, { forwardRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
@@ -9,22 +8,19 @@ import { useContext } from "react";
 import { FunctionContext } from "../../context/FormContext";
 import "./ManageSpots.css";
 import { currentSpot } from "../../store/currentSpot";
+import DeleteSpotButton from "./DeleteSpotButton";
 
 export default function ManageSpots() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const spots = useSelector((state) => state.spots);
+  const userId = useSelector((state)=> state.session.user.id);
 
   const { changeContext } = useContext(FunctionContext);
 
   function handleClick() {
     changeContext("Create a New Spot");
-  }
-
-  function handleClick2(e) {
-    changeContext("Update your Spot");
-    console.log("this is the event", e);
   }
 
   useEffect(() => {
@@ -35,9 +31,7 @@ export default function ManageSpots() {
 
   let spotsArray = Object.values(spots);
 
-  // const length = spotsArray.length - 1;
-
-  // spotsArray = spotsArray.slice(0, length);
+  const userCreatedSpot = spotsArray.find((spot) => spot.ownerId === userId)
 
   return (
     <div id="manage-spots-page">
@@ -45,18 +39,18 @@ export default function ManageSpots() {
         <ul className="manage">
           <h2 id="manage-title">Manage Your Spots</h2>
           <NavLink id="create-spot" to="/spots/new">
-            <button onClick={handleClick}>Create a New Spot</button>{" "}
+           {!userCreatedSpot ? <button onClick={handleClick}>Create a New Spot</button> : ""}
           </NavLink>
           <div id="ul-manage">
             {spotsArray.map(
-              ({ id, name, city, state, avgRating, price, previewImage }) => {
-                return id === sessionUser.id ? (
+              ({ id, ownerId, name, city, state, avgRating, price, previewImage }) => {
+                return ownerId === sessionUser.id ? (
                   <div className="list" key={id}>
                     <div className="tooltip-container">
                       <NavLink to={`/spots/${id}`}>
                         <img className="spot-image" src={previewImage} />
                       </NavLink>
-                      <span className="tooltip-text">{name}</span>
+                      <NavLink  to={`/spots/${id}`} className="tooltip-text">{name}</NavLink>
                     </div>
                     <div id="spot-list-description">
                       <div>
@@ -69,7 +63,7 @@ export default function ManageSpots() {
                       <div id="star-rating">
                         <li>
                           {" "}
-                          <FaStar /> {avgRating.toString().includes('.') ? avgRating :  avgRating ? `${avgRating}.0` : "New"}{" "}
+                          <FaStar /> {avgRating && avgRating.toString().includes('.') ? avgRating :  avgRating ? `${avgRating}.0` : "New"}{" "}
                         </li>
                       </div>
                     </div>
@@ -87,7 +81,7 @@ export default function ManageSpots() {
                         </button>
                       </NavLink>
 
-                      <button>Delete</button>
+                      <DeleteSpotButton id={id}>Delete</DeleteSpotButton>
                     </div>
                   </div>
                 ) : null;

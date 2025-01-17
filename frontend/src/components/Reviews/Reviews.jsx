@@ -95,7 +95,7 @@ function Reviews({ spot, reviewsWord }) {
 
       {spotReviews && (
         <div>
-          {spotReviews.length ? (
+          {spotReviews.length  ? (
             spotReviews.map((review) => {
               const date = new Date(review.createdAt);
               const formatter = new Intl.DateTimeFormat("en-US", {
@@ -116,7 +116,7 @@ function Reviews({ spot, reviewsWord }) {
               );
             })
           ) : (
-            <h4>Be the first to post a review!</h4>
+            !isOwner ? <h4>Be the first to post a review!</h4> : ""
           )}
         </div>
       )}

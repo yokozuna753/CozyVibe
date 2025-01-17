@@ -81,6 +81,40 @@ export const update = (spot, id) => async (dispatch) => {
 
 // !-------------------------------------
 
+// !---------------------------------
+
+// * DELETE A SPOT
+
+const DELETE_SPOT = "spots/deleteSpot";
+
+function deleteSpot(spotId){
+  return {
+    type: DELETE_SPOT,
+    payload: spotId
+  }
+}
+
+export const removeSpot = (spotId) => async (dispatch) => {
+
+  // console.log('SPOT AND ID TO BE DELETED', spotId);
+
+//  ! FINISH THE DELETE SPOT FOR REDUCER
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method: "DELETE",
+  });
+
+
+  const data = await response.json();
+
+  console.log('SPOT DELETION RESPONSE ==>',data);
+
+  dispatch(deleteSpot(spotId));
+
+  return response;
+};
+
+// !-------------------------------------
+
 // if a spot is fetched, created, or updated, it is done so through the backend
 
 // i need to find a route or method to update the preview image url of a spot?
@@ -106,11 +140,16 @@ const spotsReducer = (state = initialState, action) => {
         [action.payload.id]: {
           ...state[action.payload.id], // Keep existing properties
           ...action.payload, // Apply new updates
-          lat: action.payload.lat !== undefined ? action.payload.lat : state[action.payload.id].lat, // Retain existing lat if not provided
-          lng: action.payload.lng !== undefined ? action.payload.lng : state[action.payload.id].lng, // Retain existing lng if not provided
+          lat: action.payload.lat !== undefined ? action.payload.lat : state[action.payload.id]["lat"], // Retain existing lat if not provided
+          lng: action.payload.lng !== undefined ? action.payload.lng : state[action.payload.id]["lng"], // Retain existing lng if not provided
         },
       };
-    
+    case DELETE_SPOT:{
+      console.log('IN REDUCER, SPOT ID ==>', action.payload);
+      const newState = {...state};
+      delete newState[action.payload];
+      return {...newState};
+    }
     default:
       return state;
   }

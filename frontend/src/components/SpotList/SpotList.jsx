@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { fetchSpots } from "../../store/spots";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./SpotList.css";
 import { FaStar } from "react-icons/fa";
@@ -22,15 +22,7 @@ function SpotList({ spots }) {
     dispatch(fetchSpots());
   }, [dispatch]);
 
-  
-
-  
-  const length = Object.values(spots)
   spots = Object.values(spots)
-
-
-
-
 
   return (
     <div key={1} id="ul">
@@ -40,7 +32,7 @@ function SpotList({ spots }) {
             <div className="list" key={`${id}-${price}`}>
               <div className="tooltip-container">
                 <NavLink to={`/spots/${id}`}><img className="spot-image" src={previewImage} /></NavLink>
-                <span className="tooltip-text">{name}</span>
+                <NavLink to={`/spots/${id}`} className="tooltip-text">{name}</NavLink>
               </div>
               <div className="spot-list-description">
                 <div>
@@ -53,7 +45,7 @@ function SpotList({ spots }) {
                 <div className="star-rating">
                   <li>
                     {" "}
-                    <FaStar /> {avgRating.toString().includes('.') ? avgRating :  avgRating ? `${avgRating}.0` : "New"}{" "}
+                    <FaStar /> { avgRating && avgRating.toString().includes('.') ? avgRating :  avgRating ? `${avgRating}.0` : "New"}{" "}
                   </li>
                 </div>
               </div>

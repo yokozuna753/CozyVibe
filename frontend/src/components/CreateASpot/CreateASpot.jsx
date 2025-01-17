@@ -20,6 +20,9 @@ function CreateASpot() {
   const [price, setPrice] = useState("");
   const [previewImage, setPreviewImage] = useState("");
   const [image, setImage] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [image4, setImage4] = useState("");
   const [errors, setErrors] = useState({});
 
   const { formType } = useContext(FunctionContext);
@@ -203,7 +206,7 @@ function CreateASpot() {
             <input
               onChange={(e) => setPreviewImage(e.target.value)}
               type="text"
-              placeholder="Preview Image URL; example: google.com"
+              placeholder="Preview Image URL; example: https://intdesigners.com/wp-content/uploads/2024/03/luxurious-living-room.webp"
             />
             {errors.previewImage && (
               <p style={{ color: "red" }}>{errors.previewImage} </p>
@@ -218,9 +221,9 @@ function CreateASpot() {
             {errors.image && <p style={{ color: "red" }}>{errors.image} </p>}
           </label>
           <label>
-            <input type="text" placeholder="Image URL" />
-            <input type="text" placeholder="Image URL" />
-            <input type="text" placeholder="Image URL" />
+            <input type="text" placeholder="Image URL" onChange={(e) => setImage2(e.target.value)}/>
+            <input type="text" placeholder="Image URL" onChange={(e) => setImage3(e.target.value)}/>
+            <input type="text" placeholder="Image URL" onChange={(e) => setImage4(e.target.value)}/>
           </label>
         </div>
         <div>

@@ -23,6 +23,11 @@ function SpotDetail() {
     dispatch(currentSpot(id));
   }, [dispatch, id]);
 
+  function handleClick(e){
+    e.preventDefault();
+    alert("Feature coming soon")
+  }
+
   let reviewsWord;
   spot && spot.numReviews > 1
     ? (reviewsWord = "Reviews")
@@ -39,7 +44,7 @@ function SpotDetail() {
         </h4>
         )}
         <div id="image-container">
-         {spot && spot["SpotImages"] && <img id="main-image" src={spot["SpotImages"] && spot["SpotImages"][0].url} />} 
+         {spot && spot["SpotImages"] && <img id="main-image" src={spot["SpotImages"].length ? spot["SpotImages"][0].url : ""} />} 
         {spot && spot["SpotImages"] &&
           spot["SpotImages"].slice(1).map((spot) => {
             return (
@@ -64,7 +69,7 @@ function SpotDetail() {
                 {" · "}
                 {spot.numReviews} {`${reviewsWord}`}
               </p>
-              <button>Reserve</button>
+              <button onClick={handleClick}>Reserve</button>
             </div>
           )}
         </div>

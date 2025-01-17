@@ -648,7 +648,11 @@ router.delete("/:spotId", requireAuth, async (req, res) => {
       return res.status(403).json({ message: "Forbidden" });
     }
 
-    await spot.destroy();
+    await Spot.destroy({
+      where: {
+        id: spotId,
+      }
+    });
     return res.status(200).json({ message: "Successfully deleted" });
   } catch (error) {
     console.error("Error in DELETE /api/spots/:spotId:", error);

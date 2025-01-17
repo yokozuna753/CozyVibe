@@ -24,7 +24,7 @@ function UpdateASpot() {
   const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
 
-  const { formType, changeContext } = useContext(FunctionContext);
+  const { formType } = useContext(FunctionContext);
 
   const id = useParams().spotId;
 
@@ -93,9 +93,9 @@ function UpdateASpot() {
       };
 
       if (lat) updatedSpot.lat = Number(lat);
-      else lat = undefined;
+      else setLat(undefined)
       if (lng) updatedSpot.lng = Number(lng);
-      else lng = undefined;
+      else setLng(undefined);
 
       if (formType === "Update your Spot") dispatch(update(updatedSpot, id));
       navigate(`/spots/${id}`);
