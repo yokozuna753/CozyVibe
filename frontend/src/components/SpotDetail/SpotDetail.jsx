@@ -45,6 +45,8 @@ function SpotDetail() {
         )}
         <div id="image-container">
          {spot && spot["SpotImages"] && <img id="main-image" src={spot["SpotImages"].length ? spot["SpotImages"][0].url : ""} />} 
+         <div id="smaller-images">
+
         {spot && spot["SpotImages"] &&
           spot["SpotImages"].slice(1).map((spot) => {
             return (
@@ -53,23 +55,24 @@ function SpotDetail() {
               className="detail-images"
               src={`${spot.url}`}
               />
-              );
-              })} 
+            );
+          })} 
+          </div>
       </div>
       <div id="container">
         <div id="description">
           {spot && owner && <h2>Hosted by {`${owner.firstName} ${owner.lastName}`}</h2>}
-          {spot && <p>{spot.description} </p>}
+          {spot && <p id="spot-description">{spot.description} </p>}
         </div>
         <div id="review-box">
           {spot && (
-            <div>
+            <div id="reserve-div">
               <p>
                 {`$${spot.price} night`} <FaStar /> {spot.avgStarRating && spot.avgStarRating.toString().includes('.') ? spot.avgStarRating : `${spot.avgStarRating}.0`}{" "}
                 {" · "}
                 {spot.numReviews} {`${reviewsWord}`}
               </p>
-              <button onClick={handleClick}>Reserve</button>
+              <button id="reserve-button" onClick={handleClick}>Reserve</button>
             </div>
           )}
         </div>

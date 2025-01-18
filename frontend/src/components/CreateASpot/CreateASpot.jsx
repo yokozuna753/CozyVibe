@@ -17,7 +17,7 @@ function CreateASpot() {
   // const [lng, setLng] = useState("");
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [previewImage, setPreviewImage] = useState("");
   const [image, setImage] = useState("");
   const [image2, setImage2] = useState("");
@@ -45,7 +45,7 @@ function CreateASpot() {
       validationErrors.description =
         "Description needs a minimum of 30 characters";
     if (name.length < 1) validationErrors.name = "Name is required";
-    if (price.length < 2) validationErrors.price = "Price is required";
+    if (price <= 0) validationErrors.price = "Price is required";
     if (previewImage.length < 2 && !previewImage.includes(".com"))
       validationErrors.previewImage = "Preview image is required";
     if (

@@ -21,9 +21,13 @@ ul.profile-dropdown.hidden {
 }
 
 #logo {
-  width: 9%;
+  width: 50px;
 
   border-radius: 50%;
+}
+
+#logo:hover{
+  cursor: pointer;
 }
 
 #user-nav {

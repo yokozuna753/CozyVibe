@@ -45,7 +45,7 @@ function UpdateASpot() {
       setLng(current.lng || "");
       setDescription(current.description || "");
       setName(current.name || "");
-      setPrice(current.price || "");
+      setPrice(current.price || 0);
       setPreviewImage(current.previewImage || "");
     }
   }, [current]);
@@ -62,7 +62,7 @@ function UpdateASpot() {
       validationErrors.description =
         "Description needs a minimum of 30 characters";
     if (name.length < 1) validationErrors.name = "Name is required";
-    if (price.length < 2) validationErrors.price = "Price is required";
+    if (price <= 0) validationErrors.price = "Price is required";
     if (previewImage && previewImage.length && !previewImage.includes(".com"))
       validationErrors.previewImage = "Preview image is required";
     if (
