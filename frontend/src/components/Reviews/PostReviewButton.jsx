@@ -31,14 +31,15 @@ function PostReviewButton({id}) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div id="post-review-button">
       <OpenModalMenuItem
+
               itemText="Post Your Review"
               onItemClick={closeMenu}
               modalComponent={<SubmitReviewModal id={id} />}
               buttonText='Post Your Review'
             />
-    </>
+    </div>
   );
 }
 

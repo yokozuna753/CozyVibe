@@ -1,6 +1,5 @@
 button{
-  width: 100px;
-  align-self: flex-start;
+  width: 150px;
   margin: 10px 0px;
 }
 
@@ -23,6 +22,10 @@ button{
   display: flex;
   flex-direction: column;
 
+}
+
+#post-review-button{
+  display: flex;
 }
 
 h2,h4{

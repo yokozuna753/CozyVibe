@@ -92,7 +92,7 @@ function Reviews({ spot, reviewsWord }) {
           New
         </h2>
       )}
-      {user && !userPostedReview && !isOwner ? <PostReviewButton id={id} /> : ""}
+      {user && !userPostedReview && !isOwner ? <PostReviewButton  id={id} /> : ""}
 
       {spotReviews && (
         <div >
