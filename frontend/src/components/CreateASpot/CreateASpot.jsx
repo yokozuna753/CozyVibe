@@ -110,7 +110,7 @@ function CreateASpot() {
       <form onSubmit={handleSubmit}>
         <div>
           <h3>Where&apos;s your place located?</h3>
-          <p>
+          <p className="create-spot-headers">
             Guests will only get your exact address once they booked a
             reservation.
           </p>
@@ -153,7 +153,7 @@ function CreateASpot() {
         </div>
         <div>
           <h3>Describe your place to guests</h3>
-          <p>
+          <p className="create-spot-headers">
             Mention the best features of your space, any special amentities like
             fast wif or parking, and what you love about the neighborhood.
           </p>
@@ -170,7 +170,7 @@ function CreateASpot() {
         </div>
         <div>
           <h3>Create a title for your spot</h3>
-          <p>
+          <p className="create-spot-headers">
             Catch guests&apos; attention with a spot title that highlights what
             makes your place special.
           </p>
@@ -185,7 +185,7 @@ function CreateASpot() {
         </div>
         <div>
           <h3>Set a base price for your spot</h3>
-          <p>
+          <p className="create-spot-headers">
             Competitive pricing can help your listing stand out and rank higher
             in search results.
           </p>
@@ -204,7 +204,7 @@ function CreateASpot() {
         </div>
         <div>
           <h3>Liven up your spot with photos</h3>
-          <p>Submit a link to at least one photo to publish your spot.</p>
+          <p className="create-spot-headers">Submit a link to at least one photo to publish your spot.</p>
           <label>
             <input
               onChange={(e) => setPreviewImage(e.target.value)}

@@ -1,5 +1,5 @@
 button{
-  width: 300px;
+
   margin: 10px 0px;
 }
 
@@ -13,7 +13,7 @@ button{
 }
 
 #reviews {
-  width: 50%;
+  width: 100%;
 
 }
 
@@ -31,7 +31,7 @@ button{
 
 .post-review-button{
   display: flex;
-  width: 500px;
+
 }
 
 h2,h4{

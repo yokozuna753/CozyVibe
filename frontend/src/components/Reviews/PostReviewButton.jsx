@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import OpenModalMenuItem from "../OpenModalButton";
 import SubmitReviewModal from "../SubmitReviewModal/SubmitReviewModal";
+import './Reviews.css'
 
 
 

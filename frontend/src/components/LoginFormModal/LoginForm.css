@@ -56,6 +56,10 @@ input {
   border-radius: 10px;
 }
 
+.demo-button{
+  width: fit-content;
+}
+
 button {
   display: flex;
 
