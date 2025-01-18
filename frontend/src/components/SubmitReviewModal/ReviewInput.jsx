@@ -4,6 +4,7 @@ import "./SubmitReviewModal.css";
 
 const ReviewInput = ({rating, setRating}) => {
   const [activeRating, setActiveRating] = useState(0);
+  // 
 
   return (
     <>
