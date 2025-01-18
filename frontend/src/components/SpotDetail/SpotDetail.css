@@ -2,61 +2,92 @@
     display: flex;
     flex-direction: column;
     justify-items: center;
-    text-align: left;
-    width: 90%;
+
+    width: 75%;
 }
 
 #container{
 display: flex;
 justify-content: space-between;
+height: auto;
 }
 
 #main-image{
-    width: 500px;
+    flex-shrink: 0;
+    width: 600px;
     height: 400px;
     padding: 4px;
 }
 
 .detail-images{
     width: 200px;
-    height: 200px;
+    height: 160px;
     padding: 2px 4px;
 }
 
-#smaller-images{
-    width: 34%;
-}
 
 #image-container{
-    display: flex;
-    width: fit-content;
+    display: flex; /* Aligns the larger and smaller images side by side */
+    
+    align-items: flex-start;
+    
+    flex-wrap: wrap;
+    gap: 10px; /* Adds space between the main image and the smaller images */
+    width: 100%; /* Ensures it spans the available width */
+    overflow: hidden; /* Ensures no content overflows the container */
+}
+
+#smaller-images{
+    display: grid; /* Use grid layout for better control over rows and columns */
+  grid-template-columns: repeat(2, 1fr); /* Two images per row */
+  width: auto; /* Adjust width based on content */
+  max-width: 300px; /* Prevent it from stretching too wide */
+
 }
 
 
+#description{
+    width: 900px;
+    word-wrap: break-word; /* Break long words to prevent overflow */
+  overflow-wrap: break-word; /* Ensures compatibility with all browsers */
+  white-space: pre-wrap; /* Preserves whitespace and wraps text */
+  max-width: 100%; /* Ensure the text does not exceed the container width */
+}
 
 #review-box{
     display: flex;
     align-self: center;
     margin: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(247,149,29,0.5);
 }
 
 #reserve-div p{
     width: 250px;
+    text-align: center;
 }
 
 #reserve-button{
     width: 50%;
-
 }
 
+
+
 #spot-description{
-    font-size: small;
+    font-size: medium;
+    width: 100%;
+}
+
+p {
+    width: 100px;
 }
 
 #reviews-container{
     display: flex;
     align-items: center;
     font-size: medium;
+    width: 100%;
 }
 
 #reviews-h2{

@@ -7,26 +7,31 @@ ul.profile-dropdown.hidden {
   flex-direction: row;
   justify-content: space-between;
   position: sticky;
-  top: 0;
+  top: 0px;
   z-index: 100;
-  background-color: white;
-  width: 100%;
+  padding: 0px;
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  margin: 0px;
+  width: fit-content;
   list-style-type: none;
   border-bottom: 1px solid gray;
-  
 }
 
-#profile{
+div > #nav-ul {
+  width: 100%;
+}
+
+#profile {
   margin-right: 20px;
 }
 
 #logo {
   width: 50px;
-
+  margin-left: 10px;
   border-radius: 50%;
 }
 
-#logo:hover{
+#logo:hover {
   cursor: pointer;
 }
 
@@ -36,11 +41,11 @@ ul.profile-dropdown.hidden {
   font-size: larger;
 }
 
-#profile-info{
+#profile-info {
   border-bottom: 1px solid black;
 }
 
-#user-info{
+#user-info {
   margin: 20px 0px;
   border-bottom: 1px solid black;
 }
@@ -90,16 +95,15 @@ li {
   justify-content: right;
 }
 
-ul{
+ul {
   padding: none;
 }
 
-#log-button1{
+#log-button1 {
   margin: 10px 0px;
 }
 
-#log-button1:hover{
+#log-button1:hover {
   color: blue;
   cursor: pointer;
 }
-

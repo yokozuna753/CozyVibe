@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { FunctionContext } from "../../context/FormContext";
+import './CreateASpot.css'
 
 // i set a handle submit function that will check for errors
 
@@ -24,6 +25,7 @@ function CreateASpot() {
   const [image3, setImage3] = useState("");
   const [image4, setImage4] = useState("");
   const [errors, setErrors] = useState({});
+
 
   const { formType } = useContext(FunctionContext);
 
@@ -156,7 +158,7 @@ function CreateASpot() {
             fast wif or parking, and what you love about the neighborhood.
           </p>
           <label>
-            <input
+            <textarea
               onChange={(e) => setDescription(e.target.value)}
               type="text"
               placeholder="Please write at least 30 characters"
@@ -188,9 +190,10 @@ function CreateASpot() {
             in search results.
           </p>
           <div>
-            <label>
-              <p>$</p>
-              <input
+            <label id="price-label">
+              <p id="money">$</p>
+              <input 
+              id="money-select"
                 onChange={(e) => setPrice(e.target.value)}
                 type="number"
                 placeholder="Price per night (USD)"

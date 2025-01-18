@@ -1,0 +1,17 @@
+p{
+    width: 100%;
+}
+
+#price-label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#money{
+    width: 10px;
+}
+
+#money-select{
+    height: 20px;
+}

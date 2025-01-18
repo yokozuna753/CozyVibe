@@ -1,0 +1,30 @@
+button{
+  width: 100px;
+  align-self: flex-start;
+  margin: 10px 0px;
+}
+
+.review-text {
+  width: 60%;
+  word-wrap: break-word; /* Break long words to prevent overflow */
+  overflow-wrap: break-word; /* Ensures compatibility with all browsers */
+  white-space: pre-wrap; /* Preserves whitespace and wraps text */
+  max-width: 100%; /* Ensure the text does not exceed the container width */
+
+}
+
+#reviews {
+  width: 50%;
+
+}
+
+.spot-reviews {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+h2,h4{
+    margin: 15px 0px;
+}

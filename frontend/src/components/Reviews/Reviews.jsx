@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { fetchReviews } from "../../store/reviews.js";
 import PostReviewButton from "./PostReviewButton.jsx";
 import DeleteReviewButton from "./DeleteReviewButton.jsx"
+import './Reviews.css'
 
 function Reviews({ spot, reviewsWord }) {
   const dispatch = useDispatch();
@@ -73,7 +74,7 @@ function Reviews({ spot, reviewsWord }) {
 
 
   return (
-    <div>
+    <div id="reviews">
       {spot && spot.numReviews > 0 ? ( // if the spot exists and it has reviews, render the below
         <h2 id="reviews-h2">
           {" "}
@@ -94,7 +95,7 @@ function Reviews({ spot, reviewsWord }) {
       {user && !userPostedReview && !isOwner ? <PostReviewButton id={id} /> : ""}
 
       {spotReviews && (
-        <div>
+        <div >
           {spotReviews.length  ? (
             spotReviews.map((review) => {
               const date = new Date(review.createdAt);
@@ -106,10 +107,10 @@ function Reviews({ spot, reviewsWord }) {
               const formattedDate = formatter.format(date);
               return (
                 review && (
-                  <div key={review.id}>
+                  <div className="spot-reviews" key={review.id}>
                     <h2>{review.User.firstName}</h2>
                     <h4>{formattedDate}</h4>
-                    <p>{review.review}</p>
+                    <p className="review-text">{review.review}</p>
                     { user && user.id === review.userId && userPostedReview ? <DeleteReviewButton id={review.id} className="review-delete">Delete</DeleteReviewButton> : ""  }
                   </div>
                 )

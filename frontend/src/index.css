@@ -4,4 +4,11 @@
 #root{
     width: 100%;
     margin: 0px;
+    padding: 0;
+    background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+    display: flex;
+    justify-content: flex-start;
+
+    min-height: 945px;
+
 }

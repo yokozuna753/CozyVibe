@@ -76,10 +76,13 @@ function LoginFormModal() {
           />
         </label>
         {errors.message ? <p>The provided credentials were invalid</p> : ""}
+        <label>
+
         <button type="submit" onClick={handleSubmit} disabled={disabled}>
           Log In
         </button>
         <button type="submit" onClick={handleDemoSubmit}>Log In As Demo User</button>
+        </label>
       </div>
     </>
   );
