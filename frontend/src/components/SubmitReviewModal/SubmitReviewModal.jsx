@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
 import ReviewInput from "./ReviewInput";
-import * as React from "react";
+
 import { createReview } from "../../store/reviews";
 import "./SubmitReviewModal.css";
 
-function SubmitReviewModal({ id }) {
+function SubmitReviewModal() {
   const dispatch = useDispatch();
   const [review, setReview] = useState("");
   const { closeModal } = useModal();

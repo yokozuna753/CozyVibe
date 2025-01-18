@@ -21,9 +21,9 @@ function CreateASpot() {
   const [price, setPrice] = useState(0);
   const [previewImage, setPreviewImage] = useState("");
   const [image, setImage] = useState("");
-  const [image2, setImage2] = useState("");
-  const [image3, setImage3] = useState("");
-  const [image4, setImage4] = useState("");
+  // const [image2, setImage2] = useState("");
+  // const [image3, setImage3] = useState("");
+  // const [image4, setImage4] = useState("");
   const [errors, setErrors] = useState({});
 
 
@@ -224,9 +224,9 @@ function CreateASpot() {
             {errors.image && <p style={{ color: "red" }}>{errors.image} </p>}
           </label>
           <label>
-            <input type="text" placeholder="Image URL" onChange={(e) => setImage2(e.target.value)}/>
-            <input type="text" placeholder="Image URL" onChange={(e) => setImage3(e.target.value)}/>
-            <input type="text" placeholder="Image URL" onChange={(e) => setImage4(e.target.value)}/>
+            <input type="text" placeholder="Image URL" /> 
+            <input type="text" placeholder="Image URL" />
+            <input type="text" placeholder="Image URL" />
           </label>
         </div>
         <div>

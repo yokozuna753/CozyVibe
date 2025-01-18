@@ -34,7 +34,7 @@ export const createReview = (review, userId, spotId) => async (dispatch) => {
 
     console.log("RESPONSE FROM REVIEW CREATED", response);
 
-    let data = await response.json();
+    // let data = await response.json();
 
     await dispatch(fetchReviews(spotId));
     await dispatch(currentSpot(spotId));

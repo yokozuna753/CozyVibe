@@ -1,16 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import { useState } from "react";
 import "./Navigation.css";
-import Logo from "../../assets/home.jpg";
 import { useContext } from "react";
 import { FunctionContext } from "../../context/FormContext";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
-    const { formType, changeContext } = useContext(FunctionContext);
+    const {  changeContext } = useContext(FunctionContext);
   
   function handleClick(){
     changeContext('Create a New Spot');

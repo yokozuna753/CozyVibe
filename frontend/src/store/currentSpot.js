@@ -1,13 +1,12 @@
 import { csrfFetch } from "./csrf";
 
-
 const GET_CURRENT_SPOT = "spots/getCurrentSpot";
 
 function getCurrentSpot(spot, previewImage) {
   return {
     type: GET_CURRENT_SPOT,
     payload: spot,
-    previewImage
+    previewImage,
   };
 }
 
@@ -22,12 +21,12 @@ const initialState = {};
 
 const currentSpotReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_CURRENT_SPOT:
-      const currentSpot = {...action.payload};
+    case GET_CURRENT_SPOT: {
+      const currentSpot = { ...action.payload };
       currentSpot.previewImage = action.previewImage;
-      
 
-      return { ...state, ...currentSpot, };
+      return { ...state, ...currentSpot };
+    }
     default:
       return state;
   }

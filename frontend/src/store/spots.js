@@ -52,27 +52,22 @@ export const createSpot = (spot) => async (dispatch) => {
 
 const UPDATE_SPOT = "spots/updateSpot";
 
-function updateSpot(spot){
+function updateSpot(spot) {
   return {
     type: UPDATE_SPOT,
-    payload: spot
-  }
+    payload: spot,
+  };
 }
 
 export const update = (spot, id) => async (dispatch) => {
+  console.log("SPOT AND ID TO BE UPDATED", spot, id);
 
-  console.log('SPOT AND ID TO BE UPDATED', spot, id);
-
- 
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: "PUT",
     body: JSON.stringify(spot),
   });
 
-
   const data = await response.json();
-
-  console.log('UPDATED SPOT',data);
 
   dispatch(updateSpot(data));
 
@@ -87,26 +82,22 @@ export const update = (spot, id) => async (dispatch) => {
 
 const DELETE_SPOT = "spots/deleteSpot";
 
-function deleteSpot(spotId){
+function deleteSpot(spotId) {
   return {
     type: DELETE_SPOT,
-    payload: spotId
-  }
+    payload: spotId,
+  };
 }
 
 export const removeSpot = (spotId) => async (dispatch) => {
-
   // console.log('SPOT AND ID TO BE DELETED', spotId);
 
-//  ! FINISH THE DELETE SPOT FOR REDUCER
+  //  ! FINISH THE DELETE SPOT FOR REDUCER
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "DELETE",
   });
 
-
-  const data = await response.json();
-
-  console.log('SPOT DELETION RESPONSE ==>',data);
+  // const data = await response.json();
 
   dispatch(deleteSpot(spotId));
 
@@ -123,32 +114,39 @@ const initialState = {};
 
 const spotsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_SPOTS:
+    case GET_SPOTS: {
       const newObj = {};
       action.payload.forEach((element) => {
         newObj[element.id] = element;
       });
       return { ...state, ...newObj };
-    case CREATE_SPOT:
+    }
+    case CREATE_SPOT: {
       const { id } = action.payload;
-      console.log("PAYLOAD ===> ", action.payload);
+
       return { ...state, [id]: action.payload };
+    }
     case UPDATE_SPOT:
-      console.log('This is Payload ==>', action.payload);
+
       return {
         ...state,
         [action.payload.id]: {
           ...state[action.payload.id], // Keep existing properties
           ...action.payload, // Apply new updates
-          lat: action.payload.lat !== undefined ? action.payload.lat : state[action.payload.id]["lat"], // Retain existing lat if not provided
-          lng: action.payload.lng !== undefined ? action.payload.lng : state[action.payload.id]["lng"], // Retain existing lng if not provided
+          lat:
+            action.payload.lat !== undefined
+              ? action.payload.lat
+              : state[action.payload.id]["lat"], // Retain existing lat if not provided
+          lng:
+            action.payload.lng !== undefined
+              ? action.payload.lng
+              : state[action.payload.id]["lng"], // Retain existing lng if not provided
         },
       };
-    case DELETE_SPOT:{
-      console.log('IN REDUCER, SPOT ID ==>', action.payload);
-      const newState = {...state};
+    case DELETE_SPOT: {
+      const newState = { ...state };
       delete newState[action.payload];
-      return {...newState};
+      return { ...newState };
     }
     default:
       return state;

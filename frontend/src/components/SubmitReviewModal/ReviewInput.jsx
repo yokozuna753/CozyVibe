@@ -4,8 +4,6 @@ import "./SubmitReviewModal.css";
 
 const ReviewInput = ({rating, setRating}) => {
   const [activeRating, setActiveRating] = useState(0);
-  
-  const [disabled, setDisabled] = useState(false);
 
   return (
     <>
@@ -13,7 +11,7 @@ const ReviewInput = ({rating, setRating}) => {
         <div
           className={activeRating >= 1 ? "filled" : "empty"}
           onMouseEnter={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(1)
+             setActiveRating(1)
           }
           onMouseLeave={() =>
             setActiveRating(rating)
@@ -25,10 +23,10 @@ const ReviewInput = ({rating, setRating}) => {
         <div
           className={activeRating >= 2 ? "filled" : "empty"}
           onMouseEnter={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(2)
+             setActiveRating(2)
           }
           onMouseLeave={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(rating)
+             setActiveRating(rating)
           }
           onClick={() => setRating(2)}
         >
@@ -37,10 +35,10 @@ const ReviewInput = ({rating, setRating}) => {
         <div
           className={activeRating >= 3 ? "filled" : "empty"}
           onMouseEnter={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(3)
+             setActiveRating(3)
           }
           onMouseLeave={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(rating)
+             setActiveRating(rating)
           }
           onClick={() => setRating(3)}
         >
@@ -49,10 +47,10 @@ const ReviewInput = ({rating, setRating}) => {
         <div
           className={activeRating >= 4 ? "filled" : "empty"}
           onMouseEnter={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(4)
+             setActiveRating(4)
           }
           onMouseLeave={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(rating)
+             setActiveRating(rating)
           }
           onClick={() => setRating(4)}
         >
@@ -61,10 +59,10 @@ const ReviewInput = ({rating, setRating}) => {
         <div
           className={activeRating >= 5 ? "filled" : "empty"}
           onMouseEnter={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(5)
+             setActiveRating(5)
           }
           onMouseLeave={() =>
-            disabled ? setActiveRating(rating) : setActiveRating(rating)
+             setActiveRating(rating)
           }
           onClick={() => {
             setRating(5)
