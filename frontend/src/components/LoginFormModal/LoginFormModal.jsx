@@ -75,7 +75,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.message ? <p>The provided credentials were invalid</p> : ""}
+        {errors.message ? <p  id="login-errors">* {" "}The provided credentials were invalid</p> : ""}
         <label>
 
         <button type="submit" onClick={handleSubmit} disabled={disabled}>

@@ -35,14 +35,14 @@ function DeleteReviewButton({id}) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div className="review-delete">
       <OpenModalMenuItem
               itemText="Delete your Review"
               onItemClick={closeMenu}
               modalComponent={<DeleteReviewModal id={id} />}
               buttonText='Delete'
             />
-    </>
+    </div>
   );
 }
 

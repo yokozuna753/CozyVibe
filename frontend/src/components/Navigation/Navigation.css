@@ -10,7 +10,7 @@ ul.profile-dropdown.hidden {
   top: 0px;
   z-index: 100;
   padding: 0px;
-  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  background: linear-gradient(0.25turn, #3f87a6, #ffffff, #f69d3c);
   margin: 0px;
   width: fit-content;
   list-style-type: none;
@@ -29,6 +29,7 @@ div > #nav-ul {
   width: 50px;
   margin-left: 10px;
   border-radius: 50%;
+
 }
 
 #logo:hover {
@@ -93,6 +94,8 @@ li {
   display: flex;
   align-items: flex-end;
   justify-content: right;
+  text-decoration: none;
+  color: white;
 }
 
 ul {

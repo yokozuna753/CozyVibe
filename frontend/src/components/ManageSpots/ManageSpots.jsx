@@ -50,7 +50,7 @@ export default function ManageSpots() {
                       <NavLink to={`/spots/${id}`}>
                         <img className="spot-image" src={previewImage} />
                       </NavLink>
-                      <NavLink  to={`/spots/${id}`} className="tooltip-text">{name}</NavLink>
+                      <NavLink   to={`/spots/${id}`} className="tooltip-text">{name}</NavLink>
                     </div>
                     <div id="spot-list-description">
                       <div>
@@ -68,9 +68,10 @@ export default function ManageSpots() {
                       </div>
                     </div>
                     <div className="manage-buttons">
-                      <NavLink to={`/spots/${id}/edit`}>
+                      <NavLink className="navlinks" to={`/spots/${id}/edit`}>
                         {" "}
                         <button
+                        
                           onClick={() => {
                             changeContext("Update your Spot");
                             dispatch(currentSpot(id, previewImage));

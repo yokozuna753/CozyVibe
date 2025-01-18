@@ -20,7 +20,7 @@ function Navigation({ isLoaded }) {
     <ul id="nav-ul">
       <li>
         
-        <NavLink to="/"><img id="logo" src={Logo} /> </ NavLink>
+        <NavLink to="/"><img id="logo" src='https://cdn.dribbble.com/users/4220912/screenshots/20164211/media/cc31547f3acfdeb511f4ea36b542f576.jpg?resize=400x300&vertical=center' /> </ NavLink>
       </li>
       {isLoaded && (
         <li >

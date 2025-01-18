@@ -1,0 +1,15 @@
+
+  
+  
+.review-delete-confirm{
+    display: flex;
+    align-self: center;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.review-delete-confirm:hover{
+    transform: scale(1.2);
+}
+
+  

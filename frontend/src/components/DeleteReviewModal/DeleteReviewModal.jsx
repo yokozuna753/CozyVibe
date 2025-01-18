@@ -2,8 +2,8 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useSelector } from "react-redux";
-import { deleteReview, fetchReviews } from "../../store/reviews";
-import "../SubmitReviewModal/SubmitReviewModal.css";
+import { deleteReview } from "../../store/reviews";
+import "./DeleteReviewModal.css";
 
 function DeleteReviewModal({ id }) {
   const dispatch = useDispatch();

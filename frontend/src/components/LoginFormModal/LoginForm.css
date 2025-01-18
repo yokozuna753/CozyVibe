@@ -73,5 +73,13 @@ button {
 }
 
 p {
-  font-size: medium;
+  font-family: "Righteous", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#login-errors{
+  color: red;
+  width: 100%;
+align-self: center;
 }

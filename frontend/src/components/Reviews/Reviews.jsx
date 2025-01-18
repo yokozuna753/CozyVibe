@@ -92,7 +92,7 @@ function Reviews({ spot, reviewsWord }) {
           New
         </h2>
       )}
-      {user && !userPostedReview && !isOwner ? <PostReviewButton  id={id} /> : ""}
+      {user && !userPostedReview && !isOwner ? <div className="post-review-button"> <PostReviewButton className="post-review-button"  id={id} /></div> : ""}
 
       {spotReviews && (
         <div >
@@ -111,7 +111,7 @@ function Reviews({ spot, reviewsWord }) {
                     <h2>{review.User.firstName}</h2>
                     <h4>{formattedDate}</h4>
                     <p className="review-text">{review.review}</p>
-                    { user && user.id === review.userId && userPostedReview ? <DeleteReviewButton id={review.id} className="review-delete">Delete</DeleteReviewButton> : ""  }
+                    { user && user.id === review.userId && userPostedReview ? <DeleteReviewButton id={review.id} >Delete</DeleteReviewButton> : ""  }
                   </div>
                 )
               );

@@ -1,5 +1,5 @@
 button{
-  width: 150px;
+  width: 300px;
   margin: 10px 0px;
 }
 
@@ -17,15 +17,21 @@ button{
 
 }
 
+.review-delete{
+  display: flex;
+  align-self: flex-start;
+}
+
 .spot-reviews {
   width: 100%;
   display: flex;
   flex-direction: column;
-
+  justify-items: start;
 }
 
-#post-review-button{
+.post-review-button{
   display: flex;
+  width: 500px;
 }
 
 h2,h4{

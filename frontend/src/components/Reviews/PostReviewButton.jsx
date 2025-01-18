@@ -31,7 +31,7 @@ function PostReviewButton({id}) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <div id="post-review-button">
+    <div className="post-review-button">
       <OpenModalMenuItem
 
               itemText="Post Your Review"
