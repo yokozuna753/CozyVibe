@@ -17,7 +17,15 @@ The search for genuine comfort while traveling can be as challenging as finding 
 
 <div align="center">
   
-![Delete Spot](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXB2NjJuNjF4OGhuaTZybnZ6d3Jtamttb3ZxNXF4aTR1ZGV6anpucCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/p8Dk27FoTgs9YsWVcY/giphy.gif)
+![Update Spot](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXB2NjJuNjF4OGhuaTZybnZ6d3Jtamttb3ZxNXF4aTR1ZGV6anpucCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/p8Dk27FoTgs9YsWVcY/giphy.gif)
+  
+</div>
+
+# Delete a Spot
+
+<div align="center">
+  
+![Delete Spot](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTVoeHd6dzJ2NWRxNm9hdm1rNmZuNjRyZnZubnFtZXJ0aWQ3YTUxdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/grX0s4lAr7cxnsKqrm/giphy.gif)
   
 </div>
 
