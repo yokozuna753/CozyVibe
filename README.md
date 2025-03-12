@@ -3,7 +3,9 @@
 
 
 <div align="center">
-![Home Page](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHRlcDBqdmQxbWkwMWp0cXhqeDkzaDFkNmVyZzZqMDBrNWpmaGF5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7f6RXZ2MP47HahlSG9/giphy.gif)
+  
+![Home Page](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2phOG9tdmFnYTU5b3o5aHlkZ3kxZHBvYXA3enA3Mm5oMG4ybzMyeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aFoaqsq6ojukwvuGzJ/giphy.gif)
+  
 </div>
 
 
