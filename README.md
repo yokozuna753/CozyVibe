@@ -1,7 +1,10 @@
 
 # CozyVibe
 
+<div align="center">
+  
 ![HomePage](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHRlcDBqdmQxbWkwMWp0cXhqeDkzaDFkNmVyZzZqMDBrNWpmaGF5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7f6RXZ2MP47HahlSG9/giphy.gif)
+</div>
 
 
 ## Database Schema Design
