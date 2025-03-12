@@ -1,10 +1,23 @@
 
 # CozyVibe
 
+Live Link: [CozyVibe](https://first-project-deployed.onrender.com/)
+
+The search for genuine comfort while traveling can be as challenging as finding a place that truly feels like home. This is where CozyVibe comes in. CozyVibe is a thoughtfully crafted clone of Airbnb but with an emphasis on comfort and coziness. With the hectic nature of travel comes the need for tranquility, and CozyVibe offers a way to find peaceful accommodations that soothe both body and mind. Users will be able to discover and book cozy spaces, as well as share their own havens with travelers seeking that perfect, comfortable getaway.
+
+# Home Page and Login
 
 <div align="center">
   
 ![Home Page](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2phOG9tdmFnYTU5b3o5aHlkZ3kxZHBvYXA3enA3Mm5oMG4ybzMyeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aFoaqsq6ojukwvuGzJ/giphy.gif)
+  
+</div>
+
+# Update a Spot
+
+<div align="center">
+  
+![Delete Spot](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXB2NjJuNjF4OGhuaTZybnZ6d3Jtamttb3ZxNXF4aTR1ZGV6anpucCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/p8Dk27FoTgs9YsWVcY/giphy.gif)
   
 </div>
 
