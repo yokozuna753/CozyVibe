@@ -29,6 +29,14 @@ The search for genuine comfort while traveling can be as challenging as finding 
   
 </div>
 
+# Add a Review
+
+<div align="center">
+  
+![Add a Review](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExN25weWg1MTJtbzQxaXJ0N2VsZmV6bTZ4eHgxdDUyaXl5cXdkdG83YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W49mC6zLFJgs1jtG5x/giphy.gif)
+  
+</div>
+
 # Frontend Technologies Used
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
